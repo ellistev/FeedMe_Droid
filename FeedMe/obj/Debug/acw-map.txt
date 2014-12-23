@@ -2,3 +2,5 @@ FeedMe.ActionFoundReceiver;feedme.ActionFoundReceiver
 FeedMe.BlueToothDiscover;feedme.BlueToothDiscover
 FeedMe.MainActivity;feedme.MainActivity
 FeedMe.BtDeviceArrayAdapter;feedme.BtDeviceArrayAdapter
+FeedMe.BluetoothLEManager;feedme.BluetoothLEManager
+FeedMe.BluetoothLEManager.GattCallback;feedme.BluetoothLEManager_GattCallback

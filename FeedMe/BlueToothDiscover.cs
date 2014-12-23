@@ -21,10 +21,10 @@ using Java.Util;
 namespace FeedMe
 {
     [Activity(Label = "BlueToothDiscover")]
-    public class BlueToothDiscover : Activity
+	public class BlueToothDiscover : Activity
     {
         private static int REQUEST_ENABLE_BT = 1;
-        BluetoothAdapter btAdapter = BluetoothAdapter.DefaultAdapter;
+		BluetoothAdapter btAdapter = BluetoothAdapter.DefaultAdapter;
         private TextView blueToothTextView;
 		private ListView blueToothListView;
         private List<BluetoothDevice> btDeviceList = new List<BluetoothDevice>();
@@ -44,13 +44,13 @@ namespace FeedMe
             receiver = new ActionFoundReceiver(this);
             IntentFilter filter = new IntentFilter(BluetoothDevice.ActionFound);
             filter.AddAction(BluetoothDevice.ActionUuid);
-            filter.AddAction(BluetoothAdapter.ActionDiscoveryStarted);
-            filter.AddAction(BluetoothAdapter.ActionDiscoveryFinished);
+			filter.AddAction(BluetoothAdapter.ActionDiscoveryStarted);
+			filter.AddAction(BluetoothAdapter.ActionDiscoveryFinished);
 
             RegisterReceiver(receiver, filter); // Don't forget to unregister during onDestroy
  
             // Getting the Bluetooth adapter
-            btAdapter = BluetoothAdapter.DefaultAdapter;
+			btAdapter = BluetoothAdapter.DefaultAdapter;
             blueToothTextView.Text += "\nAdapter: " + btAdapter;
      
             Button startButton = FindViewById<Button>(Resource.Id.startBlueToothButton);
@@ -58,7 +58,8 @@ namespace FeedMe
             {
 				blueToothTextView.SetHeight(1200);
 				blueToothListView.SetMinimumHeight(0);
-                btAdapter.StartDiscovery();
+				CheckBTState();
+                //btAdapter.StartDiscovery();
             };
 
             Button stopButton = FindViewById<Button>(Resource.Id.stopBlueToothButton);
@@ -119,14 +120,19 @@ namespace FeedMe
             blueToothTextView.Text += "\nBluetooth is enabled...";
          
             // Starting the device discovery
-            btAdapter.StartDiscovery();
+			//BluetoothLEManager blemanager = new BluetoothLEManager();
+
+			//blemanager.BeginScanningForDevices();
+			btAdapter.StartLeScan(receiver);
           } else {
-            Intent enableBtIntent = new Intent(BluetoothAdapter.ActionRequestEnable);
+			Intent enableBtIntent = new Intent(BluetoothAdapter.ActionRequestEnable);
             StartActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
           }
         }
       }
+
     }
+
 }
 
 

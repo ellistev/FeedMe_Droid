@@ -1,3 +1,15 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Android.App;
+using Android.Bluetooth;
+using Android.Content;
+using Android.OS;
+using Android.Widget;
+using Java.Lang;
+using Java.Util;
+using String = System.String;
+
 namespace FeedMe
 {
     public class BtDevice
@@ -9,6 +21,10 @@ namespace FeedMe
         public string Uuid;
         
         public BtDevice(){}
+
+		public BtDevice(BluetoothDevice device){
+			Name = device.Name;
+		}
 
         public BtDevice(string name, string type, string macAddress, int strength, string uuid)
         {

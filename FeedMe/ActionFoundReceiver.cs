@@ -15,7 +15,7 @@ namespace FeedMe
     [BroadcastReceiver]
     [IntentFilter(new string[] { BluetoothDevice.ActionFound, BluetoothDevice.ActionUuid, BluetoothAdapter.ActionDiscoveryFinished, BluetoothAdapter.ActionDiscoveryFinished },
         Priority = Int32.MaxValue)]
-    public class ActionFoundReceiver : BroadcastReceiver
+	public class ActionFoundReceiver : BroadcastReceiver, BluetoothAdapter.ILeScanCallback
     {
         private List<BtDevice> btDeviceList = new List<BtDevice>();
 		private List<String> btTextList = new List<String> ();
@@ -25,8 +25,6 @@ namespace FeedMe
 		private List<BtDevice> newBtDeviceList;
 
         public ActionFoundReceiver(){}
-
-        //public ActionFoundReceiver(System.IntPtr whatever, Android.Runtime.JniHandleOwnership stuff){}
 
         public ActionFoundReceiver(BlueToothDiscover activity)
         {
@@ -68,14 +66,7 @@ namespace FeedMe
 			blueToothListView.Adapter = adapter; 
 
             blueToothTextView.Text = "";
-            //int count = 0;
-            //foreach (var btDevice in newBtDeviceList)
-            //{
-                //blueToothTextView.Text += "\n" + count + ": " + btDevice.Name + ", " + btDevice.Type + ", " + btDevice.MacAddress +
-                                          //", " + btDevice.Strength;
-                //count++;
-            //}
-            
+
         }
 
 		void blueToothListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
@@ -106,9 +97,9 @@ namespace FeedMe
             if (BluetoothDevice.ActionFound == action && blueToothTextView != null)
             {
                 BluetoothDevice device = (BluetoothDevice) intent.GetParcelableExtra(BluetoothDevice.ExtraDevice);
-                int rssi = intent.GetShortExtra(BluetoothDevice.ExtraRssi, Short.MinValue);
-                
-                string uuid = (string)intent.GetParcelableExtra(BluetoothDevice.ExtraUuid);
+
+				int rssi = intent.GetShortExtra(BluetoothDevice.ExtraRssi, Short.MinValue);
+				string uuid = (string)intent.GetParcelableExtra(BluetoothDevice.ExtraUuid);
 
                 blueToothTextView.Text += "\n  Device: " + device.Name + ", " + device.Type + ", " + rssi + ", " + device;
                 BtDevice btDevice = new BtDevice();
@@ -146,7 +137,106 @@ namespace FeedMe
                 
             }
         }
+
+		public void OnLeScan (BluetoothDevice device, int rssi, byte[] scanRecord)
+		{
+			ScannedBleDevice parsedLEDevice = ParseRawScanRecord (device, rssi, scanRecord, null);
+
+			BtDevice btDevice = new BtDevice();
+			btDevice.Name = device.Name;
+			btDevice.Type = device.Type.ToString();
+			btDevice.Strength = rssi;
+			btDevice.MacAddress = device.ToString();
+			btDevice.Uuid = uuid;
+			btDeviceList.Add(btDevice);
+
+			Console.WriteLine ("LeScanCallback: " + device.Name);
+		}
+
+		// use this method to parse those bytes and turn to an object which defined proceeding.
+		// the uuidMatcher works as a UUID filter, put null if you want parse any BLE advertising data around.
+		private ScannedBleDevice ParseRawScanRecord(BluetoothDevice device,
+			int rssi, byte[] advertisedData, byte[] uuidMatcher) {
+			try {
+				ScannedBleDevice parsedObj = new ScannedBleDevice();
+				// parsedObj.BLEDevice = device;
+				parsedObj.DeviceName = device.Name;
+				parsedObj.MacAddress = device.Address;
+				parsedObj.RSSI = rssi;
+				List<UUID> uuids = new List<UUID>();
+				int skippedByteCount = advertisedData[0];
+				int magicStartIndex = skippedByteCount + 1;
+				int magicEndIndex = magicStartIndex
+					+ advertisedData[magicStartIndex] + 1;
+				List<byte> magic = new List<byte>();
+				for (int i = magicStartIndex; i < magicEndIndex; i++) {
+					magic.Add(advertisedData[i]);
+				}
+
+				byte[] companyId = new byte[2];
+				companyId[0] = magic[2];
+				companyId[1] = magic[3];
+				parsedObj.CompanyId = companyId;
+
+				byte[] ibeaconProximityUUID = new byte[16];
+				for (int i = 0; i < 16; i++) {
+					ibeaconProximityUUID[i] = magic[i + 6];
+				}
+
+				parsedObj.IbeaconProximityUUID = ibeaconProximityUUID;
+
+				byte[] major = new byte[2];
+				major[0] = magic[22];
+				major[1] = magic[23];
+				parsedObj.Major = major;
+
+				byte[] minor = new byte[2];
+				minor[0] = magic[24];
+				minor[1] = magic[25];
+				parsedObj.Minor = minor;
+
+				byte tx = 0;
+				tx = magic[26];
+				parsedObj.Tx = tx;
+
+				parsedObj.ScannedTime = new Date().Time;
+				return parsedObj;
+			} catch (System.Exception ex) {
+
+				// Log.e(LOG_TAG,
+				// "Exception in ParseRawScanRecord with advertisedData: "
+				// + Util.BytesToHexString(advertisedData, " ")
+				// + ", detail: " + ex.getMessage());
+				return null;
+			}
+		}
+
     }
+
+	public class ScannedBleDevice{
+		// public BluetoothDevice BLEDevice;
+
+		/**
+    * Returns the hardware address of this BluetoothDevice.
+    * <p>
+    * For example, "00:11:22:AA:BB:CC".
+    * 
+    * @return Bluetooth hardware address as string
+    */
+		public string MacAddress;
+
+		public string DeviceName;
+		public double RSSI;
+		public double Distance;
+
+		public byte[] CompanyId;
+		public byte[] IbeaconProximityUUID;
+		public byte[] Major;
+		public byte[] Minor;
+		public byte Tx;
+
+		public long ScannedTime;
+	}
 
 
 }
