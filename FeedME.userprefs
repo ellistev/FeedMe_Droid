@@ -1,13 +1,6 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.079071f8" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Phoneword\BlueToothDiscover.cs">
-    <Files>
-      <File FileName="Phoneword\BlueToothDiscover.cs" Line="14" Column="14" />
-      <File FileName="Phoneword\ActionFoundReceiver.cs" Line="1" Column="1" />
-      <File FileName="Phoneword\BtDeviceArrayAdapter.cs" Line="1" Column="1" />
-      <File FileName="Phoneword\BtDevice.cs" Line="1" Column="1" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.Nexus 5 (KitKat)" />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

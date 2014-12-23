@@ -1,0 +1,4 @@
+FeedMe.ActionFoundReceiver;feedme.ActionFoundReceiver
+FeedMe.BlueToothDiscover;feedme.BlueToothDiscover
+FeedMe.MainActivity;feedme.MainActivity
+FeedMe.BtDeviceArrayAdapter;feedme.BtDeviceArrayAdapter

@@ -1,0 +1,75 @@
+c:\users\selliot\documents\visual studio 2012\Projects\FeedMe\FeedMe\bin\Debug\FeedMe.dll
+c:\users\selliot\documents\visual studio 2012\Projects\FeedMe\FeedMe\bin\Debug\FeedMe.pdb
+c:\users\selliot\documents\visual studio 2012\Projects\FeedMe\FeedMe\bin\Debug\FeedMe.dll.mdb
+c:\users\selliot\documents\visual studio 2012\Projects\FeedMe\FeedMe\bin\Debug\FeedMe_Droid.FeedMe_Droid.apk
+c:\users\selliot\documents\visual studio 2012\Projects\FeedMe\FeedMe\bin\Debug\FeedMe_Droid.FeedMe_Droid-Signed.apk
+c:\users\selliot\documents\visual studio 2012\Projects\FeedMe\FeedMe\obj\Debug\FeedMe_Droid.csprojResolveAssemblyReference.cache
+c:\users\selliot\documents\visual studio 2012\Projects\FeedMe\FeedMe\obj\Debug\FeedMe.dll
+c:\users\selliot\documents\visual studio 2012\Projects\FeedMe\FeedMe\obj\Debug\FeedMe.pdb
+c:\users\selliot\documents\visual studio 2012\Projects\FeedMe\FeedMe\obj\Debug\android\bin\FeedMe_Droid.FeedMe_Droid.apk
+c:\users\selliot\documents\visual studio 2012\Projects\FeedMe\FeedMe\obj\Debug\res\drawable-ldpi\.ds_store
+c:\users\selliot\documents\visual studio 2012\Projects\FeedMe\FeedMe\obj\Debug\res\drawable-mdpi\.ds_store
+c:\users\selliot\documents\visual studio 2012\Projects\FeedMe\FeedMe\obj\Debug\res\drawable-xhdpi\.ds_store
+c:\users\selliot\documents\visual studio 2012\Projects\FeedMe\FeedMe\obj\Debug\res\drawable-xxhdpi\.ds_store
+c:\users\selliot\documents\visual studio 2012\Projects\FeedMe\FeedMe\obj\Debug\res\drawable-hdpi\.ds_store
+c:\users\selliot\documents\visual studio 2012\Projects\FeedMe\FeedMe\obj\Debug\res\layout\main.xml
+c:\users\selliot\documents\visual studio 2012\Projects\FeedMe\FeedMe\obj\Debug\res\values\strings.xml
+c:\users\selliot\documents\visual studio 2012\Projects\FeedMe\FeedMe\obj\Debug\res\drawable\icon.png
+c:\users\selliot\documents\visual studio 2012\Projects\FeedMe\FeedMe\obj\Debug\res\drawable-ldpi\icon.png
+c:\users\selliot\documents\visual studio 2012\Projects\FeedMe\FeedMe\obj\Debug\res\drawable-mdpi\icon.png
+c:\users\selliot\documents\visual studio 2012\Projects\FeedMe\FeedMe\obj\Debug\res\drawable-xhdpi\icon.png
+c:\users\selliot\documents\visual studio 2012\Projects\FeedMe\FeedMe\obj\Debug\res\drawable-xxhdpi\icon.png
+c:\users\selliot\documents\visual studio 2012\Projects\FeedMe\FeedMe\obj\Debug\res\drawable-hdpi\icon.png
+c:\users\selliot\documents\visual studio 2012\Projects\FeedMe\FeedMe\obj\Debug\R.cs.flag
+c:\users\selliot\documents\visual studio 2012\Projects\FeedMe\FeedMe\obj\Debug\uploadflags.txt
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\bin\Debug\FeedMe.dll
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\bin\Debug\FeedMe.pdb
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\bin\Debug\FeedMe.dll.mdb
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\bin\Debug\FeedMe_Droid.FeedMe_Droid.apk
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\bin\Debug\FeedMe_Droid.FeedMe_Droid-Signed.apk
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\obj\Debug\FeedMe.dll
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\obj\Debug\FeedMe.pdb
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\obj\Debug\android\bin\FeedMe_Droid.FeedMe_Droid.apk
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\obj\Debug\res\drawable-ldpi\.ds_store
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\obj\Debug\res\drawable-mdpi\.ds_store
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\obj\Debug\res\drawable-xhdpi\.ds_store
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\obj\Debug\res\drawable-xxhdpi\.ds_store
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\obj\Debug\res\drawable-hdpi\.ds_store
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\obj\Debug\res\layout\bluetoothview.xml
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\obj\Debug\res\layout\main.xml
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\obj\Debug\res\values\strings.xml
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\obj\Debug\res\drawable\icon.png
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\obj\Debug\res\drawable-ldpi\icon.png
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\obj\Debug\res\drawable-mdpi\icon.png
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\obj\Debug\res\drawable-xhdpi\icon.png
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\obj\Debug\res\drawable-xxhdpi\icon.png
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\obj\Debug\res\drawable-hdpi\icon.png
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\obj\Debug\R.cs.flag
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\obj\Debug\uploadflags.txt
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\obj\Debug\FeedMe_Droid.csprojResolveAssemblyReference.cache
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\obj\Debug\res\layout\bluetoothlistitemview.xml
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\FeedMe\bin\Debug\FeedMe.dll
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\FeedMe\bin\Debug\FeedMe.pdb
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\FeedMe\bin\Debug\FeedMe.dll.mdb
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\FeedMe\bin\Debug\FeedMe_Droid.FeedMe_Droid.apk
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\FeedMe\bin\Debug\FeedMe_Droid.FeedMe_Droid-Signed.apk
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\FeedMe\obj\Debug\FeedMe.dll
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\FeedMe\obj\Debug\FeedMe.pdb
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\FeedMe\obj\Debug\android\bin\FeedMe_Droid.FeedMe_Droid.apk
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\FeedMe\obj\Debug\res\drawable-ldpi\.ds_store
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\FeedMe\obj\Debug\res\drawable-mdpi\.ds_store
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\FeedMe\obj\Debug\res\drawable-xhdpi\.ds_store
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\FeedMe\obj\Debug\res\drawable-xxhdpi\.ds_store
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\FeedMe\obj\Debug\res\drawable-hdpi\.ds_store
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\FeedMe\obj\Debug\res\layout\bluetoothview.xml
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\FeedMe\obj\Debug\res\layout\bluetoothlistitemview.xml
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\FeedMe\obj\Debug\res\layout\main.xml
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\FeedMe\obj\Debug\res\values\strings.xml
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\FeedMe\obj\Debug\res\drawable\icon.png
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\FeedMe\obj\Debug\res\drawable-ldpi\icon.png
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\FeedMe\obj\Debug\res\drawable-mdpi\icon.png
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\FeedMe\obj\Debug\res\drawable-xhdpi\icon.png
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\FeedMe\obj\Debug\res\drawable-xxhdpi\icon.png
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\FeedMe\obj\Debug\res\drawable-hdpi\icon.png
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\FeedMe\obj\Debug\R.cs.flag
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe\FeedMe\FeedMe\obj\Debug\uploadflags.txt

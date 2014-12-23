@@ -1,3 +1,0 @@
-Phoneword.ActionFoundReceiver;phoneword.ActionFoundReceiver
-Phoneword.BlueToothDiscover;phoneword.BlueToothDiscover
-Phoneword.MainActivity;phoneword.MainActivity

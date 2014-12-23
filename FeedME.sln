@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeedMe_Droid", "Phoneword\FeedMe_Droid.csproj", "{50FC8BCA-E51D-4500-B05E-5D0797BB721F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeedMe_Droid", "FeedMe\FeedMe_Droid.csproj", "{50FC8BCA-E51D-4500-B05E-5D0797BB721F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
