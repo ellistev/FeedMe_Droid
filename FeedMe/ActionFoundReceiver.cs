@@ -20,9 +20,9 @@ namespace FeedMe
         private List<BtDevice> btDeviceList = new List<BtDevice>();
 		private List<String> btTextList = new List<String> ();
 		private Context context;
-
+		private BtDeviceArrayAdapter adapter;
         public BlueToothDiscover mBlueToothDiscover;
-
+		private List<BtDevice> newBtDeviceList;
 
         public ActionFoundReceiver(){}
 
@@ -56,10 +56,12 @@ namespace FeedMe
         {
             TextView blueToothTextView = mBlueToothDiscover != null ? mBlueToothDiscover.FindViewById<TextView>(Resource.Id.BlueToothResults) : null;
 
-			BtDeviceArrayAdapter adapter;
+
 			ListView blueToothListView = mBlueToothDiscover.FindViewById<ListView>(Resource.Id.BlueToothResultsListView);
 
-            List<BtDevice> newBtDeviceList = btDeviceList.OrderByDescending(o => o.Strength).GroupBy(i => i.MacAddress).Select(g => g.First()).ToList();
+			blueToothListView.ItemClick += blueToothListView_ItemClick;
+
+            newBtDeviceList = btDeviceList.OrderByDescending(o => o.Strength).GroupBy(i => i.MacAddress).Select(g => g.First()).ToList();
 
 			adapter = new BtDeviceArrayAdapter(activity, context, Android.Resource.Layout.SimpleListItem1);
 			adapter.AddList (newBtDeviceList);
@@ -75,6 +77,16 @@ namespace FeedMe
             //}
             
         }
+
+		void blueToothListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+		{
+			BtDevice device= adapter.GetBlueToothListItem(e.Position);
+
+			device.MacAddress = "";
+
+			adapter.NotifyDataSetChanged ();
+
+		}
 
 		public List<String> getPopulatedList(List<BtDevice> newBtDeviceList) {
 			List<String> myList = new List<String>();

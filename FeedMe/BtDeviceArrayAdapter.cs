@@ -45,14 +45,19 @@ namespace FeedMe
 			btDeviceList = list;
 		}
 
+		public List<BtDevice> GetBlueToothList()
+		{
+			return btDeviceList;
+		}
+
 		public override int Count
 		{
 			get { return btDeviceList.Count; }
 		}
 
-		public string GetItemName(int position)
+		public BtDevice GetBlueToothListItem(int position)
 		{
-			return btDeviceList[position].Name;
+			return btDeviceList[position];
 		}
 
 		public override View GetView(int position, View convertView, ViewGroup parent)
@@ -69,18 +74,7 @@ namespace FeedMe
 
 			return view;
 		}
-
-		//public override View GetView(int position, View convertView, ViewGroup parent)
-		//{
-			//var view = convertView ?? _activity.LayoutInflater.Inflate(Resource.Layout.BlueToothView, parent, false);
-			//var deviceName = view.FindViewById<TextView>(Resource.Id.BlueToothResultsListView);
-			//var deviceMacAddress = view.FindViewById<TextView>(Resource.Id.BlueToothResults);
-			//deviceName.Text = btDeviceList[position].Name;// +"\n" + _contactList[position].address;
-			//deviceMacAddress.Text = btDeviceList[position].MacAddress;
-//
-			//return view;
-		//}
-			
+						
 		public override void NotifyDataSetChanged()
 		{
 			base.NotifyDataSetChanged();
