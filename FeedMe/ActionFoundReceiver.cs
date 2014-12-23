@@ -142,12 +142,7 @@ namespace FeedMe
 		{
 			ScannedBleDevice parsedLEDevice = ParseRawScanRecord (device, rssi, scanRecord, null);
 
-			BtDevice btDevice = new BtDevice();
-			btDevice.Name = device.Name;
-			btDevice.Type = device.Type.ToString();
-			btDevice.Strength = rssi;
-			btDevice.MacAddress = device.ToString();
-			btDevice.Uuid = uuid;
+			BtDevice btDevice = new BtDevice(parsedLEDevice);
 			btDeviceList.Add(btDevice);
 
 			Console.WriteLine ("LeScanCallback: " + device.Name);
@@ -180,7 +175,9 @@ namespace FeedMe
 
 				byte[] ibeaconProximityUUID = new byte[16];
 				for (int i = 0; i < 16; i++) {
+					if(magic.Count > (i+6)){
 					ibeaconProximityUUID[i] = magic[i + 6];
+					}
 				}
 
 				parsedObj.IbeaconProximityUUID = ibeaconProximityUUID;
@@ -213,30 +210,7 @@ namespace FeedMe
 
     }
 
-	public class ScannedBleDevice{
-		// public BluetoothDevice BLEDevice;
 
-		/**
-    * Returns the hardware address of this BluetoothDevice.
-    * <p>
-    * For example, "00:11:22:AA:BB:CC".
-    * 
-    * @return Bluetooth hardware address as string
-    */
-		public string MacAddress;
-
-		public string DeviceName;
-		public double RSSI;
-		public double Distance;
-
-		public byte[] CompanyId;
-		public byte[] IbeaconProximityUUID;
-		public byte[] Major;
-		public byte[] Minor;
-		public byte Tx;
-
-		public long ScannedTime;
-	}
 
 
 }

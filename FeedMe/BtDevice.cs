@@ -19,6 +19,8 @@ namespace FeedMe
         public string MacAddress;
         public int Strength;
         public string Uuid;
+		public string Major;
+		public string Minor;
         
         public BtDevice(){}
 
@@ -34,6 +36,17 @@ namespace FeedMe
             this.Strength = strength;
             this.Uuid = uuid;
         }
+
+		public BtDevice(ScannedBleDevice device)
+		{
+			this.Name = !string.IsNullOrEmpty(device.DeviceName) ? device.DeviceName : "";
+			this.Type = device.GetType().ToString();
+			this.MacAddress = device.MacAddress;
+			this.Strength = int.Parse(device.RSSI.ToString());
+			this.Uuid = device.IbeaconProximityUUID.ToString();
+			this.Major = device.Major.ToString();
+			this.Minor = device.Minor.ToString();
+		}
 
 
     }

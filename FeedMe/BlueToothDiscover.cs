@@ -118,11 +118,8 @@ namespace FeedMe
         } else {
           if (btAdapter.IsEnabled) {
             blueToothTextView.Text += "\nBluetooth is enabled...";
-         
-            // Starting the device discovery
-			//BluetoothLEManager blemanager = new BluetoothLEManager();
 
-			//blemanager.BeginScanningForDevices();
+			btAdapter.StartDiscovery ();
 			btAdapter.StartLeScan(receiver);
           } else {
 			Intent enableBtIntent = new Intent(BluetoothAdapter.ActionRequestEnable);
