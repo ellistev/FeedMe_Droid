@@ -142,10 +142,11 @@ namespace FeedMe
 		{
 			ScannedBleDevice parsedLEDevice = ParseRawScanRecord (device, rssi, scanRecord, null);
 
-			BtDevice btDevice = new BtDevice(parsedLEDevice);
-			btDeviceList.Add(btDevice);
+			if (parsedLEDevice != null) {
+				BtDevice btDevice = new BtDevice (parsedLEDevice);
+				btDeviceList.Add (btDevice);
+			}
 
-			Console.WriteLine ("LeScanCallback: " + device.Name);
 		}
 
 		// use this method to parse those bytes and turn to an object which defined proceeding.
@@ -176,7 +177,7 @@ namespace FeedMe
 				byte[] ibeaconProximityUUID = new byte[16];
 				for (int i = 0; i < 16; i++) {
 					if(magic.Count > (i+6)){
-					ibeaconProximityUUID[i] = magic[i + 6];
+						ibeaconProximityUUID[i] = magic[i + 6];
 					}
 				}
 

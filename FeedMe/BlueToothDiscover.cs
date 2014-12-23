@@ -73,6 +73,8 @@ namespace FeedMe
             {
 				blueToothTextView.SetHeight(0);
 				blueToothListView.SetMinimumHeight(1200);
+				btAdapter.CancelDiscovery();
+				btAdapter.StopLeScan(receiver);
                 receiver.SortBlueToothList(this);
             };
 
@@ -86,6 +88,7 @@ namespace FeedMe
             clearButton.Click += (object sender, EventArgs e) =>
             {
                 btAdapter.CancelDiscovery();
+				btAdapter.StopLeScan(receiver);
                 blueToothTextView.Text = "";
                 receiver.ClearBlueToothList();
             };
