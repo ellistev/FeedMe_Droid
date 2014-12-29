@@ -16,6 +16,9 @@ Global
 		{50FC8BCA-E51D-4500-B05E-5D0797BB721F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{50FC8BCA-E51D-4500-B05E-5D0797BB721F}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = FeedMe\FeedMe_Droid.csproj
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

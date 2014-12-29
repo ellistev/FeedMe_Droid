@@ -72,6 +72,7 @@ namespace FeedMe
 			deviceStrength.Text = btDeviceList[position].Strength.ToString();
 			deviceMacAddress.Text = btDeviceList[position].MacAddress;
 
+
 			return view;
 		}
 						

@@ -26,8 +26,8 @@ namespace FeedMe
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-
             SetContentView(Resource.Layout.Main);
+
 
             Button mainBlueToothButton = FindViewById<Button>(Resource.Id.MainBlueToothButton);
             mainBlueToothButton.Click += (sender, e) =>
