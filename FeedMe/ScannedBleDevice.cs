@@ -10,6 +10,7 @@
 
 		public byte[] CompanyId;
 		public byte[] IbeaconProximityUUID;
+		public string IbeaconProximityUUIDString;
 		public byte[] Major;
 		public byte[] Minor;
 		public byte Tx;

@@ -59,7 +59,7 @@ namespace FeedMe
 
 			blueToothListView.ItemClick += blueToothListView_ItemClick;
 
-            newBtDeviceList = btDeviceList.OrderByDescending(o => o.Strength).GroupBy(i => i.MacAddress).Select(g => g.First()).ToList();
+			newBtDeviceList = btDeviceList.Where(x => !string.IsNullOrEmpty(x.UuidString)).OrderByDescending(o => o.Strength).GroupBy(i => i.MacAddress).Select(g => g.First()).ToList();
 
 			adapter = new BtDeviceArrayAdapter(activity, context, Android.Resource.Layout.SimpleListItem1);
 			adapter.AddList (newBtDeviceList);
@@ -182,6 +182,11 @@ namespace FeedMe
 				}
 
 				parsedObj.IbeaconProximityUUID = ibeaconProximityUUID;
+
+				var littleEndianBytes = ibeaconProximityUUID.Reverse().ToArray();
+				//Single x = BitConverter.ToSingle(littleEndianBytes, 0);
+
+				parsedObj.IbeaconProximityUUIDString = new Guid(littleEndianBytes).ToString();
 
 				byte[] major = new byte[2];
 				major[0] = magic[22];

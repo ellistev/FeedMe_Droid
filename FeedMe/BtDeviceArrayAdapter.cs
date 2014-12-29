@@ -67,10 +67,16 @@ namespace FeedMe
 			var deviceType = view.FindViewById<TextView>(Resource.Id.btListItemType);
 			var deviceStrength = view.FindViewById<TextView>(Resource.Id.btListItemStength);
 			var deviceMacAddress = view.FindViewById<TextView>(Resource.Id.btListItemMacAddress);
+			var deviceRawData = view.FindViewById<TextView>(Resource.Id.btListItemRaw);
 			deviceName.Text = btDeviceList[position].Name;
 			deviceType.Text = btDeviceList[position].Type;
 			deviceStrength.Text = btDeviceList[position].Strength.ToString();
 			deviceMacAddress.Text = btDeviceList[position].MacAddress;
+			BtDevice deviceInQuestion = btDeviceList [position];
+
+			var dump = ObjectDumper.Dump(deviceInQuestion);
+
+			deviceRawData.Text = dump;
 
 
 			return view;

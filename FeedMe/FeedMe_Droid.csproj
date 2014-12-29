@@ -55,6 +55,7 @@
     <Compile Include="BtDeviceArrayAdapter.cs" />
     <Compile Include="BluetoothLEManager.cs" />
     <Compile Include="ScannedBleDevice.cs" />
+    <Compile Include="ObjectDumper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
