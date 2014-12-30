@@ -77,6 +77,9 @@ namespace FeedMe
 			// aapt resource value: 0x7f06000f
 			public const int MainSettingsButton = 2131099663;
 			
+			// aapt resource value: 0x7f060010
+			public const int SettingsRefreshDatabaseButton = 2131099664;
+			
 			// aapt resource value: 0x7f060003
 			public const int btListItemMacAddress = 2131099651;
 			
@@ -134,6 +137,9 @@ namespace FeedMe
 			
 			// aapt resource value: 0x7f030002
 			public const int Main = 2130903042;
+			
+			// aapt resource value: 0x7f030003
+			public const int SettingsView = 2130903043;
 			
 			static Layout()
 			{

@@ -26,11 +26,13 @@ namespace FeedMe
         public BlueToothDiscover mBlueToothDiscover;
 		private List<BtDevice> newBtDeviceList;
 		public TextView blueToothTextView;
+		private DatabaseFunctions database;
         public ActionFoundReceiver(){}
 
         public ActionFoundReceiver(BlueToothDiscover activity)
         {
             mBlueToothDiscover = activity;
+			database = new DatabaseFunctions(activity.BaseContext);
         }
 
         public void ClearBlueToothList()
@@ -169,14 +171,12 @@ namespace FeedMe
 		
 			string folder = System.Environment.GetFolderPath (System.Environment.SpecialFolder.Personal);
 
-			CreateDatabase database = new CreateDatabase();
-			database.CreateTables ();
-			database.PopulateData ();
 			SQLiteConnection conn = database.GetConnection ();
 
 			var results = conn.Table<MMLocation>().Where (x => x.Major == major && x.Minor == minor);
 			MMLocation resultMMLocation = results.FirstOrDefault ();
 			TableQuery<Locations> locationNameResult = conn.Table<Locations>().Where (x => x.Id == resultMMLocation.Id);
+			string path = conn.DatabasePath;
 
 			return locationNameResult.FirstOrDefault();
 

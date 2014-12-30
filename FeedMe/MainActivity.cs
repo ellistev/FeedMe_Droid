@@ -39,7 +39,8 @@ namespace FeedMe
             Button mainSettingsButton = FindViewById<Button>(Resource.Id.MainSettingsButton);
             mainSettingsButton.Click += (sender, e) =>
             {
-                ConnectBluetooth("Basis B1");
+				var intent = new Intent(this, typeof(SettingsActivity));
+				StartActivity(intent);
             };
         }
 
