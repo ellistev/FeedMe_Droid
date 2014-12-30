@@ -59,6 +59,7 @@
     <Compile Include="BluetoothLEManager.cs" />
     <Compile Include="ScannedBleDevice.cs" />
     <Compile Include="ObjectDumper.cs" />
+    <Compile Include="Database\CreateDatabase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -80,6 +81,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi\Icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\Icon.png" />
     <AndroidResource Include="Resources\drawable-hdpi\Icon.png" />
+    <Content Include="Assets\MajorMinorIndex.s3db" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -90,6 +92,6 @@
   </Target>
   -->
   <ItemGroup>
-    <AndroidAsset Include="Assets\MajorMinorIndex.s3db" />
+    <Folder Include="Database\" />
   </ItemGroup>
 </Project>

@@ -148,8 +148,8 @@ namespace FeedMe
 				blueToothTextView = mBlueToothDiscover != null ? mBlueToothDiscover.FindViewById<TextView>(Resource.Id.BlueToothResults) : null;
 				BtDevice btDevice = new BtDevice (parsedLEDevice);
 				btDeviceList.Add (btDevice);
-				string locationName = GetLocationName (btDevice.MajorInt, btDevice.MinorInt);
-				blueToothTextView.Text += "\n Device found: " + btDevice.MajorInt + ":" + btDevice.MinorInt;// + " You are at " + locationName;
+				Locations locationName = GetLocationName (btDevice.MajorInt, btDevice.MinorInt);
+				blueToothTextView.Text += "\n Device found: " + btDevice.MajorInt + ":" + btDevice.MinorInt + " You are at " + locationName.Name;
 			}
 
 		}
@@ -165,35 +165,20 @@ namespace FeedMe
 			return new String(hexChars);
 		}
 
-		private string GetLocationName(int major, int minor){
-
-			string dbName = "MajorMinorIndex.s3db";
-			string dbPath = System.IO.Path.Combine(Android.OS.Environment.ExternalStorageDirectory.ToString (), dbName);
-			// Check if your DB has already been extracted.
-			if (!System.IO.File.Exists(dbPath))
-			{
-				using (BinaryReader br = new BinaryReader(Android.Content.Res.AssetManager.Open(dbName)))
-				{
-					using (BinaryWriter bw = new BinaryWriter(new FileStream(dbPath, FileMode.Create)))
-					{
-						byte[] buffer = new byte[2048];
-						int len = 0;
-						while ((len = br.Read(buffer, 0, buffer.Length)) > 0)
-						{
-							bw.Write (buffer, 0, len);
-						}
-					}
-				}
-			}
-
+		private Locations GetLocationName(int major, int minor){
+		
 			string folder = System.Environment.GetFolderPath (System.Environment.SpecialFolder.Personal);
-			var conn = new SQLiteConnection (System.IO.Path.Combine (folder, "MajorMinorIndex.s3db"));
-			conn.CreateTable<MMLocation>();
-			conn.CreateTable<Locations>();
-			//var query = conn.Table<MMLocation>().Where(v => v.Major == major && v.Minor == minor);
-			var results = conn.Query<MMLocation> ("select * from MMLocation where Major = ?", major);
-			//SELECT name FROM my_db.sqlite_master WHERE type='table'
-			return results.FirstOrDefault ().ToString();
+
+			CreateDatabase database = new CreateDatabase();
+			database.CreateTables ();
+			database.PopulateData ();
+			SQLiteConnection conn = database.GetConnection ();
+
+			var results = conn.Table<MMLocation>().Where (x => x.Major == major && x.Minor == minor);
+			MMLocation resultMMLocation = results.FirstOrDefault ();
+			TableQuery<Locations> locationNameResult = conn.Table<Locations>().Where (x => x.Id == resultMMLocation.Id);
+
+			return locationNameResult.FirstOrDefault();
 
 		}
 
@@ -278,26 +263,5 @@ namespace FeedMe
 		}
 			
     }
-
-
-	public class MMLocation
-	{
-		[PrimaryKey, AutoIncrement]
-		public int Id { get; set; }
-		[Indexed]
-		public int Major { get; set; }
-		public int Minor { get; set; }
-		public int LocationId { get; set; }
-
-	}
-
-	public class Locations
-	{
-		[PrimaryKey, AutoIncrement]
-		public int Id { get; set; }
-		[Indexed]
-		public string Name { get; set; }
-	}
-
 
 }
