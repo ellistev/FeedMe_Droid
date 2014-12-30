@@ -94,3 +94,4 @@ C:\Users\selliot\Google Drive\AndroidDev\FeedMe_Droid\FeedMe\obj\Debug\res\drawa
 C:\Users\selliot\Google Drive\AndroidDev\FeedMe_Droid\FeedMe\obj\Debug\R.cs.flag
 C:\Users\selliot\Google Drive\AndroidDev\FeedMe_Droid\FeedMe\obj\Debug\uploadflags.txt
 C:\Users\selliot\Google Drive\AndroidDev\FeedMe_Droid\FeedMe\obj\Debug\FeedMe_Droid.csprojResolveAssemblyReference.cache
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe_Droid\FeedMe\bin\Debug\SQLite.dll

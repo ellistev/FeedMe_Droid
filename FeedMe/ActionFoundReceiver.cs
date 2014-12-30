@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using Android.App;
 using Android.Bluetooth;
 using Android.Content;
@@ -9,6 +10,7 @@ using Android.Widget;
 using Java.Lang;
 using Java.Util;
 using String = System.String;
+using SQLite;
 
 namespace FeedMe
 {
@@ -23,7 +25,7 @@ namespace FeedMe
 		private BtDeviceArrayAdapter adapter;
         public BlueToothDiscover mBlueToothDiscover;
 		private List<BtDevice> newBtDeviceList;
-
+		public TextView blueToothTextView;
         public ActionFoundReceiver(){}
 
         public ActionFoundReceiver(BlueToothDiscover activity)
@@ -59,7 +61,7 @@ namespace FeedMe
 
 			blueToothListView.ItemClick += blueToothListView_ItemClick;
 
-			newBtDeviceList = btDeviceList.Where(x => !string.IsNullOrEmpty(x.UuidString)).OrderByDescending(o => o.Strength).GroupBy(i => i.MacAddress).Select(g => g.First()).ToList();
+			newBtDeviceList = btDeviceList.OrderByDescending(o => o.Strength).GroupBy(i => i.MacAddress).Select(g => g.First()).ToList();
 
 			adapter = new BtDeviceArrayAdapter(activity, context, Android.Resource.Layout.SimpleListItem1);
 			adapter.AddList (newBtDeviceList);
@@ -92,7 +94,7 @@ namespace FeedMe
         {
             String action = intent.Action;
 			this.context = context;
-            TextView blueToothTextView = mBlueToothDiscover != null ? mBlueToothDiscover.FindViewById<TextView>(Resource.Id.BlueToothResults) : null;
+            blueToothTextView = mBlueToothDiscover != null ? mBlueToothDiscover.FindViewById<TextView>(Resource.Id.BlueToothResults) : null;
 
             if (BluetoothDevice.ActionFound == action && blueToothTextView != null)
             {
@@ -143,16 +145,66 @@ namespace FeedMe
 			ScannedBleDevice parsedLEDevice = ParseRawScanRecord (device, rssi, scanRecord, null);
 
 			if (parsedLEDevice != null) {
+				blueToothTextView = mBlueToothDiscover != null ? mBlueToothDiscover.FindViewById<TextView>(Resource.Id.BlueToothResults) : null;
 				BtDevice btDevice = new BtDevice (parsedLEDevice);
 				btDeviceList.Add (btDevice);
+				string locationName = GetLocationName (btDevice.MajorInt, btDevice.MinorInt);
+				blueToothTextView.Text += "\n Device found: " + btDevice.MajorInt + ":" + btDevice.MinorInt;// + " You are at " + locationName;
 			}
 
 		}
 
+		static char[] hexArray = "0123456789ABCDEF".ToCharArray();
+		private static String bytesToHex(byte[] bytes) {
+			char[] hexChars = new char[bytes.Length * 2];
+			for ( int j = 0; j < bytes.Length; j++ ) {
+				int v = bytes[j] & 0xFF;
+				hexChars[j * 2] = hexArray[v >> 4];
+				hexChars[j * 2 + 1] = hexArray[v & 0x0F];
+			}
+			return new String(hexChars);
+		}
+
+		private string GetLocationName(int major, int minor){
+
+			string dbName = "MajorMinorIndex.s3db";
+			string dbPath = System.IO.Path.Combine(Android.OS.Environment.ExternalStorageDirectory.ToString (), dbName);
+			// Check if your DB has already been extracted.
+			if (!System.IO.File.Exists(dbPath))
+			{
+				using (BinaryReader br = new BinaryReader(Android.Content.Res.AssetManager.Open(dbName)))
+				{
+					using (BinaryWriter bw = new BinaryWriter(new FileStream(dbPath, FileMode.Create)))
+					{
+						byte[] buffer = new byte[2048];
+						int len = 0;
+						while ((len = br.Read(buffer, 0, buffer.Length)) > 0)
+						{
+							bw.Write (buffer, 0, len);
+						}
+					}
+				}
+			}
+
+			string folder = System.Environment.GetFolderPath (System.Environment.SpecialFolder.Personal);
+			var conn = new SQLiteConnection (System.IO.Path.Combine (folder, "MajorMinorIndex.s3db"));
+			conn.CreateTable<MMLocation>();
+			conn.CreateTable<Locations>();
+			//var query = conn.Table<MMLocation>().Where(v => v.Major == major && v.Minor == minor);
+			var results = conn.Query<MMLocation> ("select * from MMLocation where Major = ?", major);
+			//SELECT name FROM my_db.sqlite_master WHERE type='table'
+			return results.FirstOrDefault ().ToString();
+
+		}
+
+
+
+
 		// use this method to parse those bytes and turn to an object which defined proceeding.
 		// the uuidMatcher works as a UUID filter, put null if you want parse any BLE advertising data around.
-		private ScannedBleDevice ParseRawScanRecord(BluetoothDevice device,
-			int rssi, byte[] advertisedData, byte[] uuidMatcher) {
+		private ScannedBleDevice ParseRawScanRecord(BluetoothDevice device, int rssi, byte[] advertisedData, byte[] uuidMatcher) {
+
+			int startByte = 2;
 			try {
 				ScannedBleDevice parsedObj = new ScannedBleDevice();
 				// parsedObj.BLEDevice = device;
@@ -183,20 +235,31 @@ namespace FeedMe
 
 				parsedObj.IbeaconProximityUUID = ibeaconProximityUUID;
 
-				var littleEndianBytes = ibeaconProximityUUID.Reverse().ToArray();
-				//Single x = BitConverter.ToSingle(littleEndianBytes, 0);
+				String hexString = bytesToHex(ibeaconProximityUUID);
 
-				parsedObj.IbeaconProximityUUIDString = new Guid(littleEndianBytes).ToString();
+				//Here is your UUID
+				parsedObj.IbeaconProximityUUIDString =  hexString.Substring(0,8) + "-" + 
+					hexString.Substring(8,4) + "-" + 
+					hexString.Substring(12,4) + "-" + 
+					hexString.Substring(16,4) + "-" + 
+					hexString.Substring(20,12);
+
 
 				byte[] major = new byte[2];
 				major[0] = magic[22];
 				major[1] = magic[23];
 				parsedObj.Major = major;
+				parsedObj.MajorInt  = (advertisedData[startByte+23] & 0xff) * 0x100 + (advertisedData[startByte+24] & 0xff);
 
 				byte[] minor = new byte[2];
 				minor[0] = magic[24];
 				minor[1] = magic[25];
 				parsedObj.Minor = minor;
+				parsedObj.MinorInt =  (advertisedData[startByte+25] & 0xff) * 0x100 + (advertisedData[startByte+26] & 0xff);
+
+
+				//Here is your Minor value
+				//parsedObj.MinorInt = (advertisedData[startByte+22] & 0xff) * 0x100 + (advertisedData[startByte+23] & 0xff);
 
 				byte tx = 0;
 				tx = magic[26];
@@ -213,10 +276,28 @@ namespace FeedMe
 				return null;
 			}
 		}
-
+			
     }
 
 
+	public class MMLocation
+	{
+		[PrimaryKey, AutoIncrement]
+		public int Id { get; set; }
+		[Indexed]
+		public int Major { get; set; }
+		public int Minor { get; set; }
+		public int LocationId { get; set; }
+
+	}
+
+	public class Locations
+	{
+		[PrimaryKey, AutoIncrement]
+		public int Id { get; set; }
+		[Indexed]
+		public string Name { get; set; }
+	}
 
 
 }

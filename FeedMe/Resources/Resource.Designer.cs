@@ -26,6 +26,8 @@ namespace FeedMe
 		
 		public static void UpdateIdValues()
 		{
+			global::SQLite.Resource.String.ApplicationName = global::FeedMe.Resource.String.ApplicationName;
+			global::SQLite.Resource.String.Hello = global::FeedMe.Resource.String.Hello;
 		}
 		
 		public partial class Attribute

@@ -68,6 +68,7 @@ public class MonoPackageManager {
 class MonoPackageManager_Resources {
 	public static final String[] Assemblies = new String[]{
 		"FeedMe.dll",
+		"SQLite.dll",
 	};
 	public static final String[] Dependencies = new String[]{
 	};

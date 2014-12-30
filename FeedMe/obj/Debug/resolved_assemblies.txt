@@ -1,1 +1,2 @@
 C:\Users\selliot\Google Drive\AndroidDev\FeedMe_Droid\FeedMe\bin\Debug\FeedMe.dll
+C:\Users\selliot\Google Drive\AndroidDev\FeedMe_Droid\packages\sqlite-net-1.0.8.2\lib\android\SQLite.dll

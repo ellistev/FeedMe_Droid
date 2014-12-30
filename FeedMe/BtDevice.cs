@@ -21,9 +21,9 @@ namespace FeedMe
         public string Uuid;
 		public string UuidString;
 		public string Major;
-		public string MajorString;
+		public int MajorInt;
 		public string Minor;
-		public string MinorString;
+		public int MinorInt;
         
         public BtDevice(){}
 
@@ -49,7 +49,9 @@ namespace FeedMe
 			this.Uuid = device.IbeaconProximityUUID.ToString();
 			this.UuidString = device.IbeaconProximityUUIDString;
 			this.Major = device.Major.ToString();
+			this.MajorInt = device.MajorInt;
 			this.Minor = device.Minor.ToString();
+			this.MinorInt = device.MinorInt;
 
 		}
 

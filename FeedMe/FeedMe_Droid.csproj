@@ -44,6 +44,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
+    <Reference Include="SQLite">
+      <HintPath>..\packages\sqlite-net-1.0.8.2\lib\android\SQLite.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionFoundReceiver.cs" />
@@ -86,4 +89,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <AndroidAsset Include="Assets\MajorMinorIndex.s3db" />
+  </ItemGroup>
 </Project>

@@ -73,7 +73,7 @@ namespace FeedMe
             {
 				blueToothTextView.SetHeight(0);
 				blueToothListView.SetMinimumHeight(1200);
-				btAdapter.CancelDiscovery();
+				//btAdapter.CancelDiscovery();
 				btAdapter.StopLeScan(receiver);
                 receiver.SortBlueToothList(this);
             };
@@ -87,7 +87,7 @@ namespace FeedMe
             Button clearButton = FindViewById<Button>(Resource.Id.clearBlueToothListButton);
             clearButton.Click += (object sender, EventArgs e) =>
             {
-                btAdapter.CancelDiscovery();
+                //btAdapter.CancelDiscovery();
 				btAdapter.StopLeScan(receiver);
                 blueToothTextView.Text = "";
                 receiver.ClearBlueToothList();
@@ -122,7 +122,7 @@ namespace FeedMe
           if (btAdapter.IsEnabled) {
             blueToothTextView.Text += "\nBluetooth is enabled...";
 
-			btAdapter.StartDiscovery ();
+			//btAdapter.StartDiscovery ();
 			btAdapter.StartLeScan(receiver);
           } else {
 			Intent enableBtIntent = new Intent(BluetoothAdapter.ActionRequestEnable);

@@ -12,7 +12,9 @@
 		public byte[] IbeaconProximityUUID;
 		public string IbeaconProximityUUIDString;
 		public byte[] Major;
+		public int MajorInt;
 		public byte[] Minor;
+		public int MinorInt;
 		public byte Tx;
 
 		public long ScannedTime;
