@@ -73,7 +73,7 @@ namespace FeedMe
 
 			using (BinaryReader br = new BinaryReader(context.Assets.Open(dbName)))
 			{
-				using (BinaryWriter bw = new BinaryWriter(new FileStream(dbPath, FileMode.CreateNew)))
+				using (BinaryWriter bw = new BinaryWriter(new FileStream(dbPath, FileMode.OpenOrCreate)))
 				{
 					byte[] buffer = new byte[2048];
 					int len = 0;
@@ -83,9 +83,6 @@ namespace FeedMe
 					}
 				}
 			}
-
-
-			conn = new SQLiteConnection (dbPath);
 		}
 
 		public void CreateTables(){

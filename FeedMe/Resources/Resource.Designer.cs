@@ -77,8 +77,8 @@ namespace FeedMe
 			// aapt resource value: 0x7f06000f
 			public const int MainSettingsButton = 2131099663;
 			
-			// aapt resource value: 0x7f060010
-			public const int SettingsRefreshDatabaseButton = 2131099664;
+			// aapt resource value: 0x7f060012
+			public const int SettingsRefreshDatabaseButton = 2131099666;
 			
 			// aapt resource value: 0x7f060003
 			public const int btListItemMacAddress = 2131099651;
@@ -98,11 +98,17 @@ namespace FeedMe
 			// aapt resource value: 0x7f06000c
 			public const int clearBlueToothListButton = 2131099660;
 			
+			// aapt resource value: 0x7f060010
+			public const int findTheMonkeyView = 2131099664;
+			
 			// aapt resource value: 0x7f06000a
 			public const int fulllistBlueToothButton = 2131099658;
 			
 			// aapt resource value: 0x7f06000d
 			public const int mainTitle = 2131099661;
+			
+			// aapt resource value: 0x7f060011
+			public const int monkeyStatusLabel = 2131099665;
 			
 			// aapt resource value: 0x7f06000b
 			public const int sortBlueToothButton = 2131099659;
@@ -139,7 +145,10 @@ namespace FeedMe
 			public const int Main = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int SettingsView = 2130903043;
+			public const int Monkey = 2130903043;
+			
+			// aapt resource value: 0x7f030004
+			public const int SettingsView = 2130903044;
 			
 			static Layout()
 			{
@@ -161,7 +170,7 @@ namespace FeedMe
 			public const int Hello = 2130968576;
 			
 			// aapt resource value: 0x7f040002
-			public const int callHistory = 2130968578;
+			public const int monkey_notification = 2130968578;
 			
 			static String()
 			{

@@ -40,7 +40,7 @@ namespace FeedMe
 			refreshDatabaseButton.Click += (object sender, EventArgs e) =>
 			{
 				DatabaseFunctions database = new DatabaseFunctions();
-				database.RefreshDatabase();
+				database.RefreshDatabase(this.BaseContext);
 			};
 
 		}

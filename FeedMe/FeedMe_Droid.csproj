@@ -47,6 +47,10 @@
     <Reference Include="SQLite">
       <HintPath>..\packages\sqlite-net-1.0.8.2\lib\android\SQLite.dll</HintPath>
     </Reference>
+    <Reference Include="Android-iBeacon-Service">
+      <HintPath>..\packages\Android-iBeacon-Service\Lib\Android\Android-iBeacon-Service.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Android.Support.v4" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionFoundReceiver.cs" />
@@ -61,6 +65,8 @@
     <Compile Include="ObjectDumper.cs" />
     <Compile Include="Database\DatabaseFunctions.cs" />
     <Compile Include="SettingsActivity.cs" />
+    <Compile Include="RangeNotifier.cs" />
+    <Compile Include="MonitorNotifier.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -68,6 +74,7 @@
     <AndroidResource Include="Resources\layout\BlueToothView.axml" />
     <AndroidResource Include="Resources\layout\BlueToothListItemView.axml" />
     <AndroidResource Include="Resources\layout\SettingsView.axml" />
+    <AndroidResource Include="Resources\layout\Monkey.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />
