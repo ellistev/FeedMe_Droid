@@ -16,20 +16,18 @@ public final class R {
     public static final class id {
         public static final int BlueToothResults=0x7f050006;
         public static final int BlueToothResultsListView=0x7f050007;
-        public static final int MainBlueToothButton=0x7f05000e;
-        public static final int MainSettingsButton=0x7f05000f;
-        public static final int SettingsRefreshDatabaseButton=0x7f050012;
+        public static final int MainBlueToothButton=0x7f05000c;
+        public static final int MainSettingsButton=0x7f05000d;
+        public static final int SettingsRefreshDatabaseButton=0x7f050010;
         public static final int btListItemMacAddress=0x7f050003;
         public static final int btListItemName=0x7f050000;
         public static final int btListItemRaw=0x7f050004;
         public static final int btListItemStength=0x7f050002;
         public static final int btListItemType=0x7f050001;
-        public static final int clearBlueToothListButton=0x7f05000c;
-        public static final int findTheMonkeyView=0x7f050010;
-        public static final int fulllistBlueToothButton=0x7f05000a;
-        public static final int mainTitle=0x7f05000d;
-        public static final int monkeyStatusLabel=0x7f050011;
-        public static final int sortBlueToothButton=0x7f05000b;
+        public static final int findTheMonkeyView=0x7f05000e;
+        public static final int mainTitle=0x7f05000b;
+        public static final int monkeyStatusLabel=0x7f05000f;
+        public static final int sortBlueToothButton=0x7f05000a;
         public static final int startBlueToothButton=0x7f050008;
         public static final int stopBlueToothButton=0x7f050009;
         public static final int textView1=0x7f050005;

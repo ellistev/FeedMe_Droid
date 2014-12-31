@@ -64,34 +64,23 @@ namespace iBeacon_Indexer
 
             Button stopButton = FindViewById<Button>(Resource.Id.stopBlueToothButton);
             stopButton.Click += (object sender, EventArgs e) =>
-            {
-                btAdapter.CancelDiscovery();
+			{
+				btAdapter.StopLeScan(receiver);
+                //btAdapter.CancelDiscovery();
             };
 
             Button sortButton = FindViewById<Button>(Resource.Id.sortBlueToothButton);
             sortButton.Click += (object sender, EventArgs e) =>
-            {
+			{
+				receiver.PrintFullBlueToothList();
 				blueToothTextView.SetHeight(0);
 				blueToothListView.SetMinimumHeight(1200);
 				//btAdapter.CancelDiscovery();
 				btAdapter.StopLeScan(receiver);
-                receiver.SortBlueToothList(this);
+                //receiver.SortBlueToothList(this);
             };
 
-            Button fullListButton = FindViewById<Button>(Resource.Id.fulllistBlueToothButton);
-            fullListButton.Click += (object sender, EventArgs e) =>
-            {
-                receiver.PrintFullBlueToothList();
-            };
 
-            Button clearButton = FindViewById<Button>(Resource.Id.clearBlueToothListButton);
-            clearButton.Click += (object sender, EventArgs e) =>
-            {
-                //btAdapter.CancelDiscovery();
-				btAdapter.StopLeScan(receiver);
-                blueToothTextView.Text = "";
-                receiver.ClearBlueToothList();
-            };
         }
 
       protected void onActivityResult(int requestCode, Result resultCode, Intent data) {

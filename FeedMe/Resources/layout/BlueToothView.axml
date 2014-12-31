@@ -40,18 +40,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/stopBlueToothButton" />
     <Button
-        android:text="Output List"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/fulllistBlueToothButton" />
-    <Button
         android:text="Sort List"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/sortBlueToothButton" />
-    <Button
-        android:text="Clear Results"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/clearBlueToothListButton" />
 </LinearLayout>

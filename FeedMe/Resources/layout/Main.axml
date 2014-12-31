@@ -5,7 +5,7 @@
     android:layout_height="fill_parent"
     android:background="#00a0ff">
     <TextView
-        android:text="Feed Me"
+        android:text=""
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
