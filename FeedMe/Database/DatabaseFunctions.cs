@@ -9,7 +9,7 @@ using Android.OS;
 using String = System.String;
 using SQLite;
 
-namespace FeedMe
+namespace iBeacon_Indexer
 {
 
 	public class MMLocation

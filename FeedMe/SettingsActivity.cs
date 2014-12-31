@@ -18,7 +18,7 @@ using Java.Lang;
 using Java.Util;
 
 
-namespace FeedMe
+namespace iBeacon_Indexer
 {
 	[Activity(Label = "Settings")]
 	public class SettingsActivity : Activity

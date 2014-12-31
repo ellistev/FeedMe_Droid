@@ -15,7 +15,7 @@ using Android.Util;
 using Java.Lang;
 using Java.Util;
 
-namespace FeedMe
+namespace iBeacon_Indexer
 {
 	public class BtDeviceArrayAdapter : ArrayAdapter<BtDevice>
 	{

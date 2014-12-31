@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="FeedMe_Droid.FeedMe_Droid" android:versionCode="1" android:versionName="1.0" android:installLocation="auto">
-  <uses-sdk android:targetSdkVersion="18" android:minSdkVersion="18" />
-  <application android:label="FeedMe" android:icon="@drawable/icon" android:name="mono.android.app.Application" android:debuggable="true">
-    <receiver android:name="feedme.ActionFoundReceiver">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" android:installLocation="auto" package="iBeaconIndexer.iBeaconIndexder_Droid">
+  <uses-sdk android:minSdkVersion="18" android:targetSdkVersion="18" />
+  <application android:icon="@drawable/icon" android:label="iBeacon Indexer" android:name="mono.android.app.Application" android:debuggable="true">
+    <receiver android:name="ibeacon_indexer.ActionFoundReceiver">
       <intent-filter android:priority="2147483647">
         <action android:name="android.bluetooth.device.action.FOUND" />
         <action android:name="android.bluetooth.device.action.UUID" />
@@ -10,22 +10,21 @@
         <action android:name="android.bluetooth.adapter.action.DISCOVERY_FINISHED" />
       </intent-filter>
     </receiver>
-    <activity android:label="BlueToothDiscover" android:name="feedme.BlueToothDiscover" />
-    <activity android:icon="@drawable/icon" android:launchMode="singleTask" android:name="feedme.MainActivity" />
-    <activity android:label="Settings" android:name="feedme.SettingsActivity" />
-    <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="FeedMe_Droid.FeedMe_Droid.mono.MonoRuntimeProvider.__mono_init__" />
-    <receiver android:name="mono.android.Seppuku">
-      <intent-filter>
-        <action android:name="mono.android.intent.action.SEPPUKU" />
-        <category android:name="mono.android.intent.category.SEPPUKU.FeedMe_Droid.FeedMe_Droid" />
-      </intent-filter>
-    </receiver>
-    <activity android:icon="@drawable/icon" android:launchMode="singleTask" android:name="feedme_droid.feedme_droid.TrialSplashScreen" android:theme="@style/Mono.Android.Theme.Splash" android:noHistory="true">
+    <activity android:label="BlueToothDiscover" android:name="ibeacon_indexer.BlueToothDiscover" />
+    <activity android:icon="@drawable/icon" android:launchMode="singleTask" android:name="ibeacon_indexer.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
+    <activity android:label="Settings" android:name="ibeacon_indexer.SettingsActivity" />
+    <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="iBeaconIndexer.iBeaconIndexder_Droid.mono.MonoRuntimeProvider.__mono_init__" />
+    <receiver android:name="mono.android.Seppuku">
+      <intent-filter>
+        <action android:name="mono.android.intent.action.SEPPUKU" />
+        <category android:name="mono.android.intent.category.SEPPUKU.iBeaconIndexer.iBeaconIndexder_Droid" />
+      </intent-filter>
+    </receiver>
   </application>
   <uses-permission android:name="android.permission.CALL_PHONE" />
   <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />

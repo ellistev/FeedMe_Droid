@@ -10,9 +10,10 @@ using Android.Widget;
 using Java.Lang;
 using Java.Util;
 using String = System.String;
+using Resource = Android.Resource;
 using SQLite;
 
-namespace FeedMe
+namespace iBeacon_Indexer
 {
     [BroadcastReceiver]
     [IntentFilter(new string[] { BluetoothDevice.ActionFound, BluetoothDevice.ActionUuid, BluetoothAdapter.ActionDiscoveryFinished, BluetoothAdapter.ActionDiscoveryFinished },

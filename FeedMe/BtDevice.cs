@@ -10,7 +10,7 @@ using Java.Lang;
 using Java.Util;
 using String = System.String;
 
-namespace FeedMe
+namespace iBeacon_Indexer
 {
     public class BtDevice
     {

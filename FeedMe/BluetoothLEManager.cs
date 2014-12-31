@@ -4,7 +4,7 @@ using Android.Bluetooth;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace FeedMe
+namespace iBeacon_Indexer
 {
 	public class BluetoothLEManager : Java.Lang.Object, BluetoothAdapter.ILeScanCallback
 	{

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using RadiusNetworks.IBeaconAndroid;
 
-namespace FeedMe
+namespace iBeacon_Indexer
 {
 	public class RangeEventArgs : EventArgs
 	{

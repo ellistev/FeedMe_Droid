@@ -1,7 +1,7 @@
 ﻿using System;
 using RadiusNetworks.IBeaconAndroid;
 
-namespace FeedMe
+namespace iBeacon_Indexer
 {
 	public class MonitorEventArgs : EventArgs
 	{

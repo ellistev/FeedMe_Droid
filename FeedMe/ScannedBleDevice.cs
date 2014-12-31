@@ -1,4 +1,4 @@
-﻿namespace FeedMe
+﻿namespace iBeacon_Indexer
 {
 	public class ScannedBleDevice{
 

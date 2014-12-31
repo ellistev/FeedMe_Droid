@@ -28,7 +28,7 @@ using RadiusNetworks.IBeaconAndroid;
 using Android.Support.V4.App;
 
 
-namespace FeedMe
+namespace iBeacon_Indexer
 {
 	[Activity(MainLauncher = true, Icon = "@drawable/icon", LaunchMode = LaunchMode.SingleTask)]
 	public class MainActivity : Activity, IBeaconConsumer
@@ -51,42 +51,42 @@ namespace FeedMe
 
 		public MainActivity()
 		{
-			_iBeaconManager = IBeaconManager.GetInstanceForApplication(this);
+			//_iBeaconManager = IBeaconManager.GetInstanceForApplication(this);
 
-			_monitorNotifier = new MonitorNotifier();
-			_rangeNotifier = new RangeNotifier();
+			//_monitorNotifier = new MonitorNotifier();
+			//_rangeNotifier = new RangeNotifier();
 
-			_monitoringRegion = new Region(monkeyId, UUID, null, null);
-			_rangingRegion = new Region(monkeyId, UUID, null, null);
+			//_monitoringRegion = new Region(monkeyId, UUID, null, null);
+			//_rangingRegion = new Region(monkeyId, UUID, null, null);
 		}
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-			SetContentView(Resource.Layout.Monkey);
+			SetContentView(Resource.Layout.Main);
 
-			_view = FindViewById<RelativeLayout>(Resource.Id.findTheMonkeyView);
-			_text = FindViewById<TextView>(Resource.Id.monkeyStatusLabel);
+			//_view = FindViewById<RelativeLayout>(Resource.Id.findTheMonkeyView);
+			//_text = FindViewById<TextView>(Resource.Id.monkeyStatusLabel);
 
-			_iBeaconManager.Bind(this);
+			//_iBeaconManager.Bind(this);
 
-			_monitorNotifier.EnterRegionComplete += EnteredRegion;
-			_monitorNotifier.ExitRegionComplete += ExitedRegion;
+			//_monitorNotifier.EnterRegionComplete += EnteredRegion;
+			//_monitorNotifier.ExitRegionComplete += ExitedRegion;
 
-			_rangeNotifier.DidRangeBeaconsInRegionComplete += RangingBeaconsInRegion;
-            //Button mainBlueToothButton = FindViewById<Button>(Resource.Id.MainBlueToothButton);
-            //mainBlueToothButton.Click += (sender, e) =>
-           // {
-             //   var intent = new Intent(this, typeof(BlueToothDiscover));
-            //    StartActivity(intent);
-           // };
+			//_rangeNotifier.DidRangeBeaconsInRegionComplete += RangingBeaconsInRegion;
+            Button mainBlueToothButton = FindViewById<Button>(Resource.Id.MainBlueToothButton);
+            mainBlueToothButton.Click += (sender, e) =>
+            {
+                var intent = new Intent(this, typeof(BlueToothDiscover));
+                StartActivity(intent);
+            };
 
-           // Button mainSettingsButton = FindViewById<Button>(Resource.Id.MainSettingsButton);
-          //  mainSettingsButton.Click += (sender, e) =>
-         //   {
-		//		var intent = new Intent(this, typeof(SettingsActivity));
-		//		StartActivity(intent);
-           // };
+            Button mainSettingsButton = FindViewById<Button>(Resource.Id.MainSettingsButton);
+            mainSettingsButton.Click += (sender, e) =>
+            {
+				var intent = new Intent(this, typeof(SettingsActivity));
+				StartActivity(intent);
+            };
         }
 
 		protected override void OnResume()
