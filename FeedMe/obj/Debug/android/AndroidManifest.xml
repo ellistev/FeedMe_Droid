@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="FeedMe_Droid.FeedMe_Droid" android:versionCode="1" android:versionName="1.0" android:installLocation="auto">
-  <uses-sdk android:minSdkVersion="21" />
+  <uses-sdk android:targetSdkVersion="18" android:minSdkVersion="18" />
   <application android:label="FeedMe" android:icon="@drawable/icon" android:name="mono.android.app.Application" android:debuggable="true">
     <receiver android:name="feedme.ActionFoundReceiver">
       <intent-filter android:priority="2147483647">
@@ -11,7 +11,7 @@
       </intent-filter>
     </receiver>
     <activity android:label="BlueToothDiscover" android:name="feedme.BlueToothDiscover" />
-    <activity android:icon="@drawable/icon" android:name="feedme.MainActivity" />
+    <activity android:icon="@drawable/icon" android:launchMode="singleTask" android:name="feedme.MainActivity" />
     <activity android:label="Settings" android:name="feedme.SettingsActivity" />
     <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="FeedMe_Droid.FeedMe_Droid.mono.MonoRuntimeProvider.__mono_init__" />
     <receiver android:name="mono.android.Seppuku">
@@ -20,7 +20,7 @@
         <category android:name="mono.android.intent.category.SEPPUKU.FeedMe_Droid.FeedMe_Droid" />
       </intent-filter>
     </receiver>
-    <activity android:icon="@drawable/icon" android:name="feedme_droid.feedme_droid.TrialSplashScreen" android:theme="@style/Mono.Android.Theme.Splash" android:noHistory="true">
+    <activity android:icon="@drawable/icon" android:launchMode="singleTask" android:name="feedme_droid.feedme_droid.TrialSplashScreen" android:theme="@style/Mono.Android.Theme.Splash" android:noHistory="true">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />

@@ -16,15 +16,23 @@ using RadiusNetworks.IBeaconAndroid;
 using String = System.String;
 using Color = Android.Graphics.Color;
 using Android.Support.V4.App;
+using System;
+using System.Linq;
+using Android.App;
+using Android.Content;
+using Android.Content.PM;
+using Android.Views;
+using Android.Widget;
+using Android.OS;
+using RadiusNetworks.IBeaconAndroid;
+using Android.Support.V4.App;
 
 
 namespace FeedMe
 {
-    [Activity(MainLauncher = true, Icon = "@drawable/icon")]
+	[Activity(MainLauncher = true, Icon = "@drawable/icon", LaunchMode = LaunchMode.SingleTask)]
 	public class MainActivity : Activity, IBeaconConsumer
     {
-        private static readonly List<string> phoneNumbers = new List<string>();
-        private WifiManager wifi;
         private List<BluetoothDevice> btDeviceList = new List<BluetoothDevice>();
 
 		private const string UUID = "f7826da64fa24e988024bc5b71e0893e";
@@ -57,13 +65,15 @@ namespace FeedMe
             base.OnCreate(bundle);
 			SetContentView(Resource.Layout.Monkey);
 
+			_view = FindViewById<RelativeLayout>(Resource.Id.findTheMonkeyView);
+			_text = FindViewById<TextView>(Resource.Id.monkeyStatusLabel);
+
 			_iBeaconManager.Bind(this);
 
 			_monitorNotifier.EnterRegionComplete += EnteredRegion;
 			_monitorNotifier.ExitRegionComplete += ExitedRegion;
 
 			_rangeNotifier.DidRangeBeaconsInRegionComplete += RangingBeaconsInRegion;
-
             //Button mainBlueToothButton = FindViewById<Button>(Resource.Id.MainBlueToothButton);
             //mainBlueToothButton.Click += (sender, e) =>
            // {
@@ -79,13 +89,16 @@ namespace FeedMe
            // };
         }
 
-		public void OnIBeaconServiceConnect()
+		protected override void OnResume()
 		{
-			_iBeaconManager.SetMonitorNotifier(_monitorNotifier);
-			_iBeaconManager.SetRangeNotifier(_rangeNotifier);
+			base.OnResume();
+			_paused = false;
+		}
 
-			_iBeaconManager.StartMonitoringBeaconsInRegion(_monitoringRegion);
-			_iBeaconManager.StartRangingBeaconsInRegion(_rangingRegion);
+		protected override void OnPause()
+		{
+			base.OnPause();
+			_paused = true;
 		}
 
 		void EnteredRegion(object sender, MonitorEventArgs e)
@@ -93,14 +106,18 @@ namespace FeedMe
 			if(_paused)
 			{
 				ShowNotification();
-			}
+			}	
+		}
+
+		void ExitedRegion(object sender, MonitorEventArgs e)
+		{
 		}
 
 		void RangingBeaconsInRegion(object sender, RangeEventArgs e)
 		{
 			if (e.Beacons.Count > 0)
 			{
-				IBeacon beacon = (IBeacon) e.Beacons;
+				IBeacon beacon = (IBeacon)e.Beacons;
 				var message = string.Empty;
 
 				switch((ProximityType)beacon.Proximity)
@@ -123,8 +140,13 @@ namespace FeedMe
 			}
 		}
 
-		void ExitedRegion(object sender, MonitorEventArgs e)
+		private void UpdateDisplay(string message, Color color)
 		{
+			RunOnUiThread(() =>
+				{
+					_text.Text = message;
+					_view.SetBackgroundColor(color);
+				});
 		}
 
 		private void ShowNotification()
@@ -147,67 +169,14 @@ namespace FeedMe
 			notificationManager.Notify(notificationId, notification);
 		}
 
-		private void UpdateDisplay(string message, Color color)
+		public void OnIBeaconServiceConnect()
 		{
-			RunOnUiThread(() =>
-				{
-					_text.Text = message;
-					_view.SetBackgroundColor(color);
-				});
+			_iBeaconManager.SetMonitorNotifier(_monitorNotifier);
+			_iBeaconManager.SetRangeNotifier(_rangeNotifier);
+
+			_iBeaconManager.StartMonitoringBeaconsInRegion(_monitoringRegion);
+			_iBeaconManager.StartRangingBeaconsInRegion(_rangingRegion);
 		}
-
-        private bool ConnectBluetooth(string sDeviceName)
-        {
-
-            try
-            {
-                BluetoothAdapter oBblue = BluetoothAdapter.DefaultAdapter;
-                System.Boolean isEnabled = oBblue.IsEnabled;
-
-                if (oBblue.State == Android.Bluetooth.State.Off)
-                {
-                    return false;
-                }
-
-                if (string.IsNullOrEmpty(oBblue.Name))
-                {
-                    return false;
-                }
-                ICollection<BluetoothDevice> devices = oBblue.BondedDevices;
-                if (devices != null)
-                {
-                    if (devices.Count >= 1)
-                    {
-                        foreach (BluetoothDevice Dev in devices)
-                        {
-                            if (Dev.Name == sDeviceName)
-                            {
-                                try
-                                {
-                                    BluetoothSocket socket = Dev.CreateRfcommSocketToServiceRecord(Dev.GetUuids()[0].Uuid);
-
-                                    if (!socket.IsConnected)
-                                    {
-                                        socket.Connect();
-                                    }
-                                    return socket.IsConnected;
-                                }
-                                catch (System.Exception ex)
-                                {
-                                    return false;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                return false;
-            }
-            catch (System.Exception ex)
-            {
-                return false;
-            }
-        }
 
 		protected override void OnDestroy()
 		{
