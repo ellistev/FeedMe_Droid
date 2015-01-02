@@ -1,16 +1,15 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.079071f8" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="c:\Users\selliot\Google Drive\AndroidDev\FeedMe_Droid\FeedMe\ActionFoundReceiver.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.CB5A1TURS3" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="FeedMe\MainActivity.cs">
     <Files>
-      <File FileName="FeedMe\MainActivity.cs" Line="17" Column="17" />
+      <File FileName="FeedMe\MainActivity.cs" Line="37" Column="37" />
       <File FileName="c:\Users\selliot\Google Drive\AndroidDev\FeedMe_Droid\FeedMe\ActionFoundReceiver.cs" Line="1" Column="1" />
       <File FileName="c:\Users\selliot\Google Drive\AndroidDev\FeedMe_Droid\FeedMe\BlueToothDiscover.cs" Line="1" Column="1" />
-      <File FileName="FeedMe\RangeNotifier.cs" Line="1" Column="1" />
-      <File FileName="FeedMe\MonitorNotifier.cs" Line="1" Column="1" />
-      <File FileName="FeedMe\Properties\AndroidManifest.xml" Line="1" Column="1" />
       <File FileName="c:\Users\selliot\Google Drive\AndroidDev\FeedMe_Droid\FeedMe\Database\DatabaseFunctions.cs" Line="1" Column="1" />
-      <File FileName="c:\Users\selliot\Google Drive\AndroidDev\FeedMe_Droid\FeedMe\BtDeviceArrayAdapter.cs" Line="30" Column="30" />
-      <File FileName="FeedMe\BtDevice.cs" Line="19" Column="19" />
+      <File FileName="c:\Users\selliot\Google Drive\AndroidDev\FeedMe_Droid\FeedMe\BtDeviceArrayAdapter.cs" Line="1" Column="1" />
+      <File FileName="FeedMe\BtDevice.cs" Line="1" Column="1" />
+      <File FileName="FeedMe\SettingsActivity.cs" Line="1" Column="1" />
+      <File FileName="FeedMe\Properties\AssemblyInfo.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

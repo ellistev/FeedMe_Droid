@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" android:installLocation="auto" package="iBeaconIndexer.iBeaconIndexder_Droid">
-  <uses-sdk android:minSdkVersion="18" android:targetSdkVersion="18" />
-  <application android:icon="@drawable/icon" android:label="iBeacon Indexer" android:name="mono.android.app.Application" android:debuggable="true">
+  <uses-sdk android:minSdkVersion="17" android:targetSdkVersion="17" />
+  <application android:icon="@drawable/ic_launcher" android:label="iBeacon Indexer" android:debuggable="true" android:name="mono.android.app.Application">
     <receiver android:name="ibeacon_indexer.ActionFoundReceiver">
       <intent-filter android:priority="2147483647">
         <action android:name="android.bluetooth.device.action.FOUND" />
@@ -11,7 +11,7 @@
       </intent-filter>
     </receiver>
     <activity android:label="BlueToothDiscover" android:name="ibeacon_indexer.BlueToothDiscover" />
-    <activity android:icon="@drawable/icon" android:launchMode="singleTask" android:name="ibeacon_indexer.MainActivity">
+    <activity android:icon="@drawable/ic_launcher" android:launchMode="singleTask" android:name="ibeacon_indexer.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />

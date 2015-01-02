@@ -30,7 +30,7 @@ using Android.Support.V4.App;
 
 namespace iBeacon_Indexer
 {
-	[Activity(MainLauncher = true, Icon = "@drawable/icon", LaunchMode = LaunchMode.SingleTask)]
+	[Activity(MainLauncher = true, Icon = "@drawable/ic_launcher", LaunchMode = LaunchMode.SingleTask)]
 	public class MainActivity : Activity, IBeaconConsumer
     {
         private List<BluetoothDevice> btDeviceList = new List<BluetoothDevice>();

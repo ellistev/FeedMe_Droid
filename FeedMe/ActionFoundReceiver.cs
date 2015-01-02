@@ -151,7 +151,8 @@ namespace iBeacon_Indexer
 				blueToothTextView = mBlueToothDiscover != null ? mBlueToothDiscover.FindViewById<TextView>(Resource.Id.BlueToothResults) : null;
 				BtDevice btDevice = new BtDevice (parsedLEDevice);
 				btDeviceList.Add (btDevice);
-				Locations locationName = GetLocationName (btDevice.MajorInt, btDevice.MinorInt);
+				Locations locationName = database.GetLocationName (btDevice.MajorInt, btDevice.MinorInt);
+				int newBtDeviceId = database.AddNewBtDevice (btDevice);
 				blueToothTextView.Text += "\n Device found: " + btDevice.MajorInt + ":" + btDevice.MinorInt + " You are at " + locationName.Name;
 			}
 
@@ -168,20 +169,7 @@ namespace iBeacon_Indexer
 			return new String(hexChars);
 		}
 
-		private Locations GetLocationName(int major, int minor){
-		
-			string folder = System.Environment.GetFolderPath (System.Environment.SpecialFolder.Personal);
 
-			SQLiteConnection conn = database.GetConnection ();
-
-			var results = conn.Table<MMLocation>().Where (x => x.Major == major && x.Minor == minor);
-			MMLocation resultMMLocation = results.FirstOrDefault ();
-			TableQuery<Locations> locationNameResult = conn.Table<Locations>().Where (x => x.Id == resultMMLocation.Id);
-			string path = conn.DatabasePath;
-
-			return locationNameResult.FirstOrDefault();
-
-		}
 
 
 
