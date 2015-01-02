@@ -48,9 +48,9 @@ namespace iBeacon_Indexer
 			string dbPath = Path.Combine (Android.OS.Environment.ExternalStorageDirectory.ToString(), dbName);
 			// Check if your DB has already been extracted.
 
-			UpdateDatabaseToCurrentVersion ();
-
 			conn = new SQLiteConnection (dbPath);
+
+			UpdateDatabaseToCurrentVersion ();
 		}
 
 		public void UpdateDatabaseToCurrentVersion(){
