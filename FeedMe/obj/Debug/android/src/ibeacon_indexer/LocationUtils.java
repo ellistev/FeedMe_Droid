@@ -1,7 +1,7 @@
 package ibeacon_indexer;
 
 
-public class BlueToothDiscover
+public class LocationUtils
 	extends android.app.Activity
 	implements
 		mono.android.IGCUserPeer,
@@ -10,7 +10,6 @@ public class BlueToothDiscover
 	static final String __md_methods;
 	static {
 		__md_methods = 
-			"n_onCreate:(Landroid/os/Bundle;)V:GetOnCreate_Landroid_os_Bundle_Handler\n" +
 			"n_onResume:()V:GetOnResumeHandler\n" +
 			"n_onPause:()V:GetOnPauseHandler\n" +
 			"n_onLocationChanged:(Landroid/location/Location;)V:GetOnLocationChanged_Landroid_location_Location_Handler:Android.Locations.ILocationListenerInvoker, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null\n" +
@@ -18,24 +17,23 @@ public class BlueToothDiscover
 			"n_onProviderEnabled:(Ljava/lang/String;)V:GetOnProviderEnabled_Ljava_lang_String_Handler:Android.Locations.ILocationListenerInvoker, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null\n" +
 			"n_onStatusChanged:(Ljava/lang/String;ILandroid/os/Bundle;)V:GetOnStatusChanged_Ljava_lang_String_ILandroid_os_Bundle_Handler:Android.Locations.ILocationListenerInvoker, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null\n" +
 			"";
-		mono.android.Runtime.register ("iBeacon_Indexer.BlueToothDiscover, iBeacon_Indexer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", BlueToothDiscover.class, __md_methods);
+		mono.android.Runtime.register ("iBeacon_Indexer.LocationUtils, iBeacon_Indexer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", LocationUtils.class, __md_methods);
 	}
 
 
-	public BlueToothDiscover () throws java.lang.Throwable
+	public LocationUtils () throws java.lang.Throwable
 	{
 		super ();
-		if (getClass () == BlueToothDiscover.class)
-			mono.android.TypeManager.Activate ("iBeacon_Indexer.BlueToothDiscover, iBeacon_Indexer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
+		if (getClass () == LocationUtils.class)
+			mono.android.TypeManager.Activate ("iBeacon_Indexer.LocationUtils, iBeacon_Indexer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
 	}
 
-
-	public void onCreate (android.os.Bundle p0)
+	public LocationUtils (android.content.Context p0) throws java.lang.Throwable
 	{
-		n_onCreate (p0);
+		super ();
+		if (getClass () == LocationUtils.class)
+			mono.android.TypeManager.Activate ("iBeacon_Indexer.LocationUtils, iBeacon_Indexer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "Android.Content.Context, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=84e04ff9cfb79065", this, new java.lang.Object[] { p0 });
 	}
-
-	private native void n_onCreate (android.os.Bundle p0);
 
 
 	public void onResume ()

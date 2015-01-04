@@ -57,14 +57,14 @@ namespace iBeacon_Indexer
 			int lastSchemaVersion = 0;
 			int lastDataVersion = 0;
 			try{
-				var lastSchemaVersionEntry = conn.Query<DBSchemaVersion> ("select max(LastDBSchemaVersion) from DbSchemaVersion");
-				lastSchemaVersion = lastSchemaVersionEntry.FirstOrDefault().LastDBSchemaVersion;
+				var lastSchemaVersionEntry = conn.Query<DBSchemaVersion> ("select * from DbSchemaVersion");
+				lastSchemaVersion = lastSchemaVersionEntry.OrderBy(x => x.Id).First().LastDBSchemaVersion;
 			}
 			catch(Exception e){
 				// doesn't exist
 			}
 			try{
-				var lastDbDataEntry = conn.Query<DbDataVersion> ("select max(LastDBDataVersion) from DBDataVersion");
+				var lastDbDataEntry = conn.Query<DbDataVersion> ("select * from DBDataVersion");
 				lastDataVersion = lastDbDataEntry.FirstOrDefault().LastDBDataVersion;
 			}
 			catch(Exception e){
@@ -103,9 +103,26 @@ namespace iBeacon_Indexer
 
 		private void UpdateData(int lastDataVersion)
 		{
-			//get list of files in data folder
+			//get list of files in schema folder
 			var dataFolderFiles = context.Assets.List ("database/data");
-			//execute all files not executed already
+			//List<String> schemaUpdateFiles = FileUtils.getFileNames (schemaFolderName);
+			foreach(string dataSqlFileName in dataFolderFiles){
+				if(Integer.ParseInt(dataSqlFileName.Split('.')[0]) > lastDataVersion){
+					//if this file is greater than last updated, execute to update database schema
+					StringBuilder buf= new StringBuilder();
+					Stream sqlstreamin = context.Assets.Open ("database/data/" + dataSqlFileName);
+					BufferedReader infile =	new BufferedReader(new Java.IO.InputStreamReader(sqlstreamin, "UTF-8"));
+					String str;
+
+					while ((str=infile.ReadLine()) != null) {
+						buf.Append(str);
+					}
+
+					infile.Close();
+					//execute all files not executed already
+					ExecuteScript (buf.ToString());
+				}
+			}
 		}
 
 		protected void ExecuteScript(string script)

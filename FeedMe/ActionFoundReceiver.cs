@@ -30,9 +30,10 @@ namespace iBeacon_Indexer
 		private DatabaseFunctions database;
         public ActionFoundReceiver(){}
 
-        public ActionFoundReceiver(BlueToothDiscover activity)
+		public ActionFoundReceiver(BlueToothDiscover activity)
         {
             mBlueToothDiscover = activity;
+			context = context;
 			database = new DatabaseFunctions(activity.BaseContext);
         }
 
@@ -152,8 +153,14 @@ namespace iBeacon_Indexer
 				BtDevice btDevice = new BtDevice (parsedLEDevice);
 				btDeviceList.Add (btDevice);
 				Locations locationName = database.GetLocationName (btDevice.MajorInt, btDevice.MinorInt);
+				//only add if new, update if changed
 				int newBtDeviceId = database.AddNewBtDevice (btDevice);
-				blueToothTextView.Text += "\n Device found: " + btDevice.MajorInt + ":" + btDevice.MinorInt + " You are at " + locationName.Name;
+
+				//get gps location and 
+				string location = mBlueToothDiscover.CheckLocation ();
+
+
+				blueToothTextView.Text += "\n Device found: " + btDevice.MajorInt + ":" + btDevice.MinorInt + " You are at " + locationName.Name + "(" + location + ")";
 			}
 
 		}

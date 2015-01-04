@@ -1,7 +1,7 @@
  INSERT INTO Locations (Id,Name)
 VALUES 
 (1, 'Bedroom'),
-(2 'Couch'),
+(2, 'Couch'),
 (3, 'Table');
 GO
 
@@ -17,7 +17,7 @@ VALUES
 (100);
 GO
 
-INSERT INTO DBSchemaVersion (LastSchemaVersion)
+INSERT INTO DBSchemaVersion (LastDBSchemaVersion)
 VALUES
 (100);
 GO
