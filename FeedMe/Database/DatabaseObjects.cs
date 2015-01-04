@@ -23,6 +23,15 @@ namespace iBeacon_Indexer
 		public string Name { get; set; }
 	}
 
+	public class GPSLocation
+	{
+		[PrimaryKey, AutoIncrement]
+		public int Id { get; set;}
+		[Indexed]
+		public string AddressString { get; set;}
+		public string GpsAddress { get; set;}
+	}
+
 	public class BtDevices{
 		[PrimaryKey, AutoIncrement]
 		public int Id { get; set; }
@@ -35,15 +44,7 @@ namespace iBeacon_Indexer
 		public int Major{ get; set; }
 		public int Minor{ get; set; }
 
-		public BtDevices(BtDevice device){
-			Name = device.Name;
-			Type = device.Type;
-			MacAddress = device.MacAddress;
-			Strength = device.Strength;
-			Uuid = device.UuidString;
-			Major = device.MajorInt;
-			Minor = device.MinorInt;
-		}
+
 	}
 
 	public class DBSchemaVersion

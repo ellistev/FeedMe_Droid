@@ -171,9 +171,37 @@ namespace iBeacon_Indexer
 
 		public int AddNewBtDevice(BtDevice btdevice){
 
-			BtDevices btDevicesIndividual = new BtDevices (btdevice);
+			iBeacon_Indexer.BtDevices btDevicesIndividual = new BtDevices();
+			btDevicesIndividual.Name = btdevice.Name;
+			btDevicesIndividual.Type = btdevice.Type;
+			btDevicesIndividual.MacAddress = btdevice.MacAddress;
+			btDevicesIndividual.Strength = btdevice.Strength;
+			btDevicesIndividual.Uuid = btdevice.UuidString;
+			btDevicesIndividual.Major = btdevice.MajorInt;
+			btDevicesIndividual.Minor = btdevice.MinorInt;
+
 
 			return conn.Insert(btDevicesIndividual);
+		}
+
+		public int UpdateBtDevice(BtDevice btdevice){
+
+			iBeacon_Indexer.BtDevices btDevicesIndividual = new BtDevices();
+			btDevicesIndividual.Name = btdevice.Name;
+			btDevicesIndividual.Type = btdevice.Type;
+			btDevicesIndividual.MacAddress = btdevice.MacAddress;
+			btDevicesIndividual.Strength = btdevice.Strength;
+			btDevicesIndividual.Uuid = btdevice.UuidString;
+			btDevicesIndividual.Major = btdevice.MajorInt;
+			btDevicesIndividual.Minor = btdevice.MinorInt;
+
+			return conn.Update (btDevicesIndividual);
+		}
+
+		public BtDevices GetBtDevice(string uuid, int major, int minor, string macAddress){
+			var results =  conn.Table<BtDevices>().Where(x => x.Uuid == uuid && x.Major == major && x.Minor == minor && x.MacAddress == macAddress);
+
+			return results.FirstOrDefault();
 		}
 
 		public Locations GetLocationName(int major, int minor){

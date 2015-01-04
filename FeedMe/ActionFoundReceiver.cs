@@ -12,6 +12,7 @@ using Java.Util;
 using String = System.String;
 using Resource = Android.Resource;
 using SQLite;
+using Android.Locations;
 
 namespace iBeacon_Indexer
 {
@@ -151,16 +152,29 @@ namespace iBeacon_Indexer
 			if (parsedLEDevice != null) {
 				blueToothTextView = mBlueToothDiscover != null ? mBlueToothDiscover.FindViewById<TextView>(Resource.Id.BlueToothResults) : null;
 				BtDevice btDevice = new BtDevice (parsedLEDevice);
-				btDeviceList.Add (btDevice);
-				Locations locationName = database.GetLocationName (btDevice.MajorInt, btDevice.MinorInt);
-				//only add if new, update if changed
-				int newBtDeviceId = database.AddNewBtDevice (btDevice);
 
 				//get gps location and 
 				string location = mBlueToothDiscover.CheckLocation ();
+				Locations locationName = database.GetLocationName (btDevice.MajorInt, btDevice.MinorInt);
+
+				if (location != "Can't determine the current address." && location != "Unable to determine your location.") {
+					blueToothTextView.Text += "\n Device found: " + btDevice.MajorInt + ":" + btDevice.MinorInt + " You are at " + locationName.Name + "(" + location + ")";
 
 
-				blueToothTextView.Text += "\n Device found: " + btDevice.MajorInt + ":" + btDevice.MinorInt + " You are at " + locationName.Name + "(" + location + ")";
+					btDeviceList.Add (btDevice);
+
+
+
+					//only add if new, update if changed
+					Location currentLocation = mBlueToothDiscover.GetCurrentLocationObject ();
+					BtDevices deviceAlreadyExists = database.GetBtDevice (btDevice.UuidString, btDevice.MajorInt, btDevice.MinorInt, btDevice.MacAddress);
+					if (deviceAlreadyExists == null) {
+						int newBtDeviceId = database.AddNewBtDevice (btDevice);
+					} else {
+						database.UpdateBtDevice (btDevice);
+					}
+				}
+
 			}
 
 		}

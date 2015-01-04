@@ -34,6 +34,7 @@ namespace iBeacon_Indexer
 		public string _locationText;
 		public string _addressText;
 		private String _locationProvider;
+		bool locationUpdated = false;
 
 
         protected override void OnCreate(Bundle bundle)
@@ -88,6 +89,10 @@ namespace iBeacon_Indexer
 
 
         }
+
+		public bool LocationWasUpdated(){
+			return _currentLocation != null;
+		}
 
 		protected override void OnResume()
 		{
@@ -157,13 +162,12 @@ namespace iBeacon_Indexer
 			Address address = addressList.FirstOrDefault();
 			if (address != null)
 			{
-				StringBuilder deviceAddress = new StringBuilder();
+				string deviceAddress = "";
 				for (int i = 0; i < address.MaxAddressLineIndex; i++)
 				{
-					deviceAddress.Append(address.GetAddressLine(i))
-						.AppendLine(",");
+					deviceAddress += (address.GetAddressLine(i)) + ", ";
 				}
-				_addressText = deviceAddress.ToString();
+				_addressText = deviceAddress;
 			}
 			else
 			{
@@ -176,6 +180,7 @@ namespace iBeacon_Indexer
 		public void OnLocationChanged(Location location)
 		{
 			_currentLocation = location;
+			locationUpdated = true;
 			if (_currentLocation == null)
 			{
 				_locationText = "Unable to determine your location.";
@@ -184,6 +189,10 @@ namespace iBeacon_Indexer
 			{
 				_locationText = String.Format("{0},{1}", _currentLocation.Latitude, _currentLocation.Longitude);
 			}
+		}
+
+		public Location GetCurrentLocationObject(){
+			return _currentLocation;
 		}
 
 		public void OnProviderDisabled(string provider) {}
@@ -202,10 +211,11 @@ namespace iBeacon_Indexer
           return;
         } else {
           if (btAdapter.IsEnabled) {
-            blueToothTextView.Text += "\nBluetooth is enabled...";
+            	blueToothTextView.Text += "\nBluetooth is enabled...";
 
-			//btAdapter.StartDiscovery ();
-			btAdapter.StartLeScan(receiver);
+				//btAdapter.StartDiscovery ();
+
+				btAdapter.StartLeScan(receiver);
           } else {
 			Intent enableBtIntent = new Intent(BluetoothAdapter.ActionRequestEnable);
             StartActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
