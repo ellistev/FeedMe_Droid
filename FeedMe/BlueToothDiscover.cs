@@ -129,7 +129,7 @@ namespace iBeacon_Indexer
 			_locationManager = (LocationManager) this.BaseContext.GetSystemService(LocationService);
 			Criteria criteriaForLocationService = new Criteria
 			{
-				Accuracy = Accuracy.Fine
+				Accuracy = Accuracy.NoRequirement
 			};
 			IList<string> acceptableLocationProviders = _locationManager.GetProviders(criteriaForLocationService, true);
 
