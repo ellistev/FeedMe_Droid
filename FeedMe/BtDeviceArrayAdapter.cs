@@ -20,32 +20,32 @@ namespace iBeacon_Indexer
 	public class BtDeviceArrayAdapter : ArrayAdapter<BtDevice>
 	{
 
-		public static List<BtDevice> btDeviceList;
+		public static List<BtDevices> btDeviceList;
 		private Activity _activity;
 
 
 		public BtDeviceArrayAdapter(Activity activity, Context context,int resourceId):base(context,resourceId)//,assets)
 		{
 			_activity = activity;
-			btDeviceList = new List<BtDevice>();
+			btDeviceList = new List<BtDevices>();
 		}
 
-		public static List<BtDevice> getBtDeviceList()
+		public static List<BtDevices> getBtDeviceList()
 		{
 			return btDeviceList;
 		}
 
-		public void Add(BtDevice item)
+		public void Add(BtDevices item)
 		{
 			btDeviceList.Add(item);
 		}
 
-		public void AddList(List<BtDevice> list)
+		public void AddList(List<BtDevices> list)
 		{
 			btDeviceList = list;
 		}
 
-		public List<BtDevice> GetBlueToothList()
+		public List<BtDevices> GetBlueToothList()
 		{
 			return btDeviceList;
 		}
@@ -55,7 +55,7 @@ namespace iBeacon_Indexer
 			get { return btDeviceList.Count; }
 		}
 
-		public BtDevice GetBlueToothListItem(int position)
+		public BtDevices GetBlueToothListItem(int position)
 		{
 			return btDeviceList[position];
 		}
@@ -72,7 +72,7 @@ namespace iBeacon_Indexer
 			deviceType.Text = btDeviceList[position].Type;
 			deviceStrength.Text = btDeviceList[position].Strength.ToString();
 			deviceMacAddress.Text = btDeviceList[position].MacAddress;
-			BtDevice deviceInQuestion = btDeviceList [position];
+			BtDevices deviceInQuestion = btDeviceList [position];
 
 			var dump = ObjectDumper.Dump(deviceInQuestion);
 

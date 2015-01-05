@@ -10,14 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView1" />
-    <TextView
+<!-- <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/BlueToothResults"
         android:height="100px"
         android:scrollbars="vertical"
         android:scrollbarAlwaysDrawVerticalTrack="true"
-        android:clickable="true" />
+        android:clickable="true" />-->
     <ListView
         android:minWidth="25px"
         android:minHeight="100px"

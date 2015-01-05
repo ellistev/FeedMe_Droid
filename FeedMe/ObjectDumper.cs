@@ -146,6 +146,9 @@ public class ObjectDumper
 		if (o is string)
 			return string.Format("\"{0}\"", o);
 
+			if (o is String)
+				return String.Format("\"{0}\"", o);
+
 		if (o is char && (char)o == '\0') 
 			return string.Empty; 
 

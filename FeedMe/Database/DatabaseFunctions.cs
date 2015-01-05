@@ -215,6 +215,7 @@ namespace iBeacon_Indexer
 
 				GPSLocation existingGPSLocation = GetGpsLocation(btDevicesIndividual.Id);
 				if (existingGPSLocation == null) {
+					existingGPSLocation = new GPSLocation ();
 					existingGPSLocation.BtDevicesId = btDeviceId;
 					existingGPSLocation.Address = gpsLocation.Address;
 					existingGPSLocation.Altitude = gpsLocation.Altitude;
@@ -244,6 +245,12 @@ namespace iBeacon_Indexer
 			var results =  conn.Table<BtDevices>().Where(x => x.Uuid == uuid && x.Major == major && x.Minor == minor);
 
 			return results.FirstOrDefault();
+		}
+
+		public List<BtDevices> GetAllBtDevices(){
+			var results =  conn.Table<BtDevices>();
+
+			return results.ToList();
 		}
 
 		public Locations GetLocationName(string uuid, int major, int minor){

@@ -25,7 +25,7 @@ namespace iBeacon_Indexer
     {
         private static int REQUEST_ENABLE_BT = 1;
 		BluetoothAdapter btAdapter = BluetoothAdapter.DefaultAdapter;
-        private TextView blueToothTextView;
+        //private TextView blueToothTextView;
 		private ListView blueToothListView;
         private List<BluetoothDevice> btDeviceList = new List<BluetoothDevice>();
         private ActionFoundReceiver receiver = null;
@@ -43,10 +43,10 @@ namespace iBeacon_Indexer
             SetContentView(Resource.Layout.BlueToothView);
 			InitializeLocationManager();
 
-            blueToothTextView = FindViewById<TextView>(Resource.Id.BlueToothResults);
+            //blueToothTextView = FindViewById<TextView>(Resource.Id.BlueToothResults);
 			blueToothListView = FindViewById<ListView>(Resource.Id.BlueToothResultsListView);
 
-            blueToothTextView.MovementMethod = new ScrollingMovementMethod();
+            //blueToothTextView.MovementMethod = new ScrollingMovementMethod();
             //Register the BroadcastReceiver
 			receiver = new ActionFoundReceiver(this);
             IntentFilter filter = new IntentFilter(BluetoothDevice.ActionFound);
@@ -58,14 +58,15 @@ namespace iBeacon_Indexer
  
             // Getting the Bluetooth adapter
 			btAdapter = BluetoothAdapter.DefaultAdapter;
-            blueToothTextView.Text += "\nAdapter: " + btAdapter;
+            //blueToothTextView.Text += "\nAdapter: " + btAdapter;
      
             Button startButton = FindViewById<Button>(Resource.Id.startBlueToothButton);
             startButton.Click += (object sender, EventArgs e) =>
             {
-				blueToothTextView.SetHeight(1200);
+				//blueToothTextView.SetHeight(1200);
 				blueToothListView.SetMinimumHeight(0);
 				CheckBTState();
+				receiver.SortBlueToothList(this);
                 //btAdapter.StartDiscovery();
             };
 
@@ -73,14 +74,14 @@ namespace iBeacon_Indexer
             stopButton.Click += (object sender, EventArgs e) =>
 			{
 				btAdapter.StopLeScan(receiver);
-                //btAdapter.CancelDiscovery();
+				receiver.SortBlueToothList(this);
             };
 
             Button sortButton = FindViewById<Button>(Resource.Id.sortBlueToothButton);
             sortButton.Click += (object sender, EventArgs e) =>
 			{
 				receiver.PrintFullBlueToothList();
-				blueToothTextView.SetHeight(0);
+				//blueToothTextView.SetHeight(0);
 				blueToothListView.SetMinimumHeight(1200);
 				//btAdapter.CancelDiscovery();
 				btAdapter.StopLeScan(receiver);
@@ -112,8 +113,8 @@ namespace iBeacon_Indexer
 
 		ActionFoundReceiver receiver = new ActionFoundReceiver(this);
         UnregisterReceiver(receiver);
-        blueToothTextView = FindViewById<TextView>(Resource.Id.BlueToothResults);
-          blueToothTextView.Text += btDeviceList;
+        //blueToothTextView = FindViewById<TextView>(Resource.Id.BlueToothResults);
+          //blueToothTextView.Text += btDeviceList;
       }
 
 
@@ -207,11 +208,11 @@ namespace iBeacon_Indexer
         // List paired devices
         // Emulator doesn't support Bluetooth and will return null
         if(btAdapter==null) { 
-          blueToothTextView.Text += "\nBluetooth NOT supported. Aborting.";
+          //blueToothTextView.Text += "\nBluetooth NOT supported. Aborting.";
           return;
         } else {
           if (btAdapter.IsEnabled) {
-            	blueToothTextView.Text += "\nBluetooth is enabled...";
+            	//blueToothTextView.Text += "\nBluetooth is enabled...";
 
 				//btAdapter.StartDiscovery ();
 

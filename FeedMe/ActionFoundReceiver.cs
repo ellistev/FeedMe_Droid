@@ -46,8 +46,8 @@ namespace iBeacon_Indexer
 
         public void PrintFullBlueToothList()
         {
-            TextView blueToothTextView = mBlueToothDiscover != null ? mBlueToothDiscover.FindViewById<TextView>(Resource.Id.BlueToothResults) : null;
-            blueToothTextView.Text = "";
+            //TextView blueToothTextView = mBlueToothDiscover != null ? mBlueToothDiscover.FindViewById<TextView>(Resource.Id.BlueToothResults) : null;
+            //blueToothTextView.Text = "";
             int count = 0;
             foreach (var btDevice in btDeviceList)
             {
@@ -59,26 +59,27 @@ namespace iBeacon_Indexer
 
 		public void SortBlueToothList(Activity activity)
         {
-            TextView blueToothTextView = mBlueToothDiscover != null ? mBlueToothDiscover.FindViewById<TextView>(Resource.Id.BlueToothResults) : null;
+            //TextView blueToothTextView = mBlueToothDiscover != null ? mBlueToothDiscover.FindViewById<TextView>(Resource.Id.BlueToothResults) : null;
 
 
 			ListView blueToothListView = mBlueToothDiscover.FindViewById<ListView>(Resource.Id.BlueToothResultsListView);
 
 			blueToothListView.ItemClick += blueToothListView_ItemClick;
 
-			newBtDeviceList = btDeviceList.OrderByDescending(o => o.Strength).GroupBy(i => i.MacAddress).Select(g => g.First()).ToList();
+			//newBtDeviceList = btDeviceList.OrderByDescending(o => o.Strength).GroupBy(i => i.MacAddress).Select(g => g.First()).ToList();
 
-			adapter = new BtDeviceArrayAdapter(activity, context, Android.Resource.Layout.SimpleListItem1);
-			adapter.AddList (newBtDeviceList);
+			adapter = new BtDeviceArrayAdapter(activity, activity.BaseContext, Android.Resource.Layout.SimpleListItem1);
+			List<BtDevices> btDevicesListFromDatabase = database.GetAllBtDevices();
+			adapter.AddList (btDevicesListFromDatabase);
 			blueToothListView.Adapter = adapter; 
 
-            blueToothTextView.Text = "";
+            //blueToothTextView.Text = "";
 
         }
 
 		void blueToothListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
-			BtDevice device= adapter.GetBlueToothListItem(e.Position);
+			BtDevices device= adapter.GetBlueToothListItem(e.Position);
 
 			device.MacAddress = "";
 
@@ -99,7 +100,7 @@ namespace iBeacon_Indexer
         {
             String action = intent.Action;
 			this.context = context;
-            blueToothTextView = mBlueToothDiscover != null ? mBlueToothDiscover.FindViewById<TextView>(Resource.Id.BlueToothResults) : null;
+           // blueToothTextView = mBlueToothDiscover != null ? mBlueToothDiscover.FindViewById<TextView>(Resource.Id.BlueToothResults) : null;
 
             if (BluetoothDevice.ActionFound == action && blueToothTextView != null)
             {
@@ -150,7 +151,7 @@ namespace iBeacon_Indexer
 			ScannedBleDevice parsedLEDevice = ParseRawScanRecord (device, rssi, scanRecord, null);
 
 			if (parsedLEDevice != null) {
-				blueToothTextView = mBlueToothDiscover != null ? mBlueToothDiscover.FindViewById<TextView>(Resource.Id.BlueToothResults) : null;
+				//blueToothTextView = mBlueToothDiscover != null ? mBlueToothDiscover.FindViewById<TextView>(Resource.Id.BlueToothResults) : null;
 				BtDevice btDevice = new BtDevice (parsedLEDevice);
 				int newBtDeviceId;
 
