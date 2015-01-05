@@ -10,6 +10,14 @@ CREATE TABLE "MMLocation"(
 "LocationId" integer );
 GO
 
+CREATE TABLE "GPSLocation"(
+"Id" integer primary key autoincrement not null,
+"BtDevicesId" integer,
+"Address" varchar,
+"LatitudeLongitude" varchar,
+"Altitude" varchar );
+GO
+
 CREATE TABLE "BtDevices"(
 "Id" integer primary key autoincrement not null ,
 "Name" varchar ,

@@ -169,7 +169,7 @@ namespace iBeacon_Indexer
 
 		}
 
-		public int AddNewBtDevice(BtDevice btdevice){
+		public int AddNewBtDevice(BtDevice btdevice, GPSLocation newGpsLocation){
 
 			iBeacon_Indexer.BtDevices btDevicesIndividual = new BtDevices();
 			btDevicesIndividual.Name = btdevice.Name;
@@ -180,11 +180,15 @@ namespace iBeacon_Indexer
 			btDevicesIndividual.Major = btdevice.MajorInt;
 			btDevicesIndividual.Minor = btdevice.MinorInt;
 
+			int newBTDeviceId = conn.Insert(btDevicesIndividual);;
 
-			return conn.Insert(btDevicesIndividual);
+			newGpsLocation.BtDevicesId = newBTDeviceId;
+			conn.Insert (newGpsLocation);
+
+			return newBTDeviceId;
 		}
 
-		public int UpdateBtDevice(BtDevice btdevice){
+		public int UpdateBtDevice(BtDevice btdevice, GPSLocation updatedGpsLocation){
 
 			iBeacon_Indexer.BtDevices btDevicesIndividual = new BtDevices();
 			btDevicesIndividual.Name = btdevice.Name;
@@ -195,7 +199,11 @@ namespace iBeacon_Indexer
 			btDevicesIndividual.Major = btdevice.MajorInt;
 			btDevicesIndividual.Minor = btdevice.MinorInt;
 
-			return conn.Update (btDevicesIndividual);
+			int updatedBTDeviceId = conn.Update (btDevicesIndividual);;
+			updatedGpsLocation.BtDevicesId = updatedBTDeviceId;
+			conn.Update (updatedGpsLocation);
+
+			return updatedBTDeviceId;
 		}
 
 		public BtDevices GetBtDevice(string uuid, int major, int minor, string macAddress){

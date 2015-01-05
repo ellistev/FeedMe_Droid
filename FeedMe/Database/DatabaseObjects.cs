@@ -28,8 +28,10 @@ namespace iBeacon_Indexer
 		[PrimaryKey, AutoIncrement]
 		public int Id { get; set;}
 		[Indexed]
-		public string AddressString { get; set;}
-		public string GpsAddress { get; set;}
+		public int BtDevicesId { get; set;}
+		public string Address { get; set;}
+		public string LatitudeLongitude { get; set;}
+		public string Altitude {get; set;}
 	}
 
 	public class BtDevices{
