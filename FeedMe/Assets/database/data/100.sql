@@ -1,15 +1,17 @@
  INSERT INTO Locations (Id,Name)
 VALUES 
-(1, 'Bedroom'),
-(2, 'Couch'),
-(3, 'Table');
+(1, 'Not Found'),
+(2, 'Bedroom'),
+(3, 'Couch'),
+(4, 'Table');
 GO
 
-INSERT INTO MMLocation (Id, Major, Minor, LocationId)
+INSERT INTO MMLocation (Id, UUID, Major, Minor, LocationId)
 VALUES
-(1, 1854, 36039, 1),
-(2, 43942, 1810, 2),
-(3, 62614, 62288, 3);
+(1, '', 0, 0, 1),
+(2, '', 1854, 36039, 2),
+(3, '', 43942, 1810, 3),
+(4, '', 62614, 62288, 4);
 GO
 
 INSERT INTO DBDataVersion (LastDBDataVersion)

@@ -158,9 +158,6 @@ namespace iBeacon_Indexer
 				string location = mBlueToothDiscover.CheckLocation ();
 				Locations locationName = database.GetLocationName (btDevice.MajorInt, btDevice.MinorInt);
 
-				//if (location != "Can't determine the current address." && location != "Unable to determine your location.") {
-				blueToothTextView.Text += "\n Device found: " + btDevice.MajorInt + ":" + btDevice.MinorInt + " You are at " + locationName.Name + "(" + location + ")";
-
 
 				btDeviceList.Add (btDevice);
 
@@ -180,6 +177,11 @@ namespace iBeacon_Indexer
 					updatedGpsLocation.Altitude = currentLocation != null ? currentLocation.Altitude.ToString() : "";
 					newBtDeviceId = database.UpdateBtDevice (btDevice, updatedGpsLocation);
 				}
+
+				//if (location != "Can't determine the current address." && location != "Unable to determine your location.") {
+				blueToothTextView.Text += "\n Device found: " + btDevice.MajorInt + ":" + btDevice.MinorInt + " You are at " + locationName.Name + "(" + String.Format ("{0},{1}", currentLocation != null ? currentLocation.Latitude.ToString() : "", currentLocation != null ? currentLocation.Longitude.ToString() : "") + location + ")";
+
+
 
 				//}
 
@@ -247,26 +249,32 @@ namespace iBeacon_Indexer
 					hexString.Substring(16,4) + "-" + 
 					hexString.Substring(20,12);
 
-
 				byte[] major = new byte[2];
-				major[0] = magic[22];
-				major[1] = magic[23];
-				parsedObj.Major = major;
-				parsedObj.MajorInt  = (advertisedData[startByte+23] & 0xff) * 0x100 + (advertisedData[startByte+24] & 0xff);
-
 				byte[] minor = new byte[2];
-				minor[0] = magic[24];
-				minor[1] = magic[25];
-				parsedObj.Minor = minor;
-				parsedObj.MinorInt =  (advertisedData[startByte+25] & 0xff) * 0x100 + (advertisedData[startByte+26] & 0xff);
-
-
-				//Here is your Minor value
-				//parsedObj.MinorInt = (advertisedData[startByte+22] & 0xff) * 0x100 + (advertisedData[startByte+23] & 0xff);
-
 				byte tx = 0;
-				tx = magic[26];
-				parsedObj.Tx = tx;
+				try{
+
+					major[0] = magic[22];
+					major[1] = magic[23];
+					parsedObj.Major = major;
+					parsedObj.MajorInt  = (advertisedData[startByte+23] & 0xff) * 0x100 + (advertisedData[startByte+24] & 0xff);
+
+					minor[0] = magic[24];
+					minor[1] = magic[25];
+
+					parsedObj.Minor = minor;
+					parsedObj.MinorInt =  (advertisedData[startByte+25] & 0xff) * 0x100 + (advertisedData[startByte+26] & 0xff);
+
+					tx = magic[26];
+					parsedObj.Tx = tx;
+
+				} catch (System.Exception ex) {
+					parsedObj.Major = major;
+					parsedObj.MajorInt  = 0;
+					parsedObj.Minor = minor;
+					parsedObj.MinorInt =  0;
+					parsedObj.Tx = 0;
+				}
 
 				parsedObj.ScannedTime = new Date().Time;
 				return parsedObj;

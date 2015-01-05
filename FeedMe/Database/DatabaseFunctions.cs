@@ -216,8 +216,10 @@ namespace iBeacon_Indexer
 
 			var results = conn.Table<MMLocation>().Where (x => x.Major == major && x.Minor == minor);
 			MMLocation resultMMLocation = results.FirstOrDefault ();
-			TableQuery<Locations> locationNameResult = conn.Table<Locations>().Where (x => x.Id == resultMMLocation.Id);
-			string path = conn.DatabasePath;
+
+			int locationId = (resultMMLocation != null ? resultMMLocation.Id : 1);
+
+			TableQuery<Locations> locationNameResult = conn.Table<Locations>().Where (x => x.Id == locationId);
 
 			return locationNameResult.FirstOrDefault();
 

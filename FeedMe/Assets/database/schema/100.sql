@@ -5,6 +5,7 @@ GO
 
 CREATE TABLE "MMLocation"(
 "Id" integer primary key autoincrement not null ,
+"UUID" varchar ,
 "Major" integer ,
 "Minor" integer ,
 "LocationId" integer );

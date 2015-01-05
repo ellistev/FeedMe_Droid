@@ -41,6 +41,7 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
-FeedMe/bin/
-FeedMe/obj/
+FeedMe/bin
+FeedMe/obj
 *.apk
+FeedMe/obj/Debug/assemblies/Mono.Android.Support.v4.dll
