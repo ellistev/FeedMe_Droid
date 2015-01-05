@@ -27,7 +27,8 @@ CREATE TABLE "BtDevices"(
 "Strength" varchar ,
 "UUID" varchar ,
 "Major" varchar ,
-"Minor" varchar
+"Minor" varchar,
+"TimeFound" varchar
  );
 GO
 

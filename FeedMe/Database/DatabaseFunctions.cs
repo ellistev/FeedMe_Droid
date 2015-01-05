@@ -188,9 +188,13 @@ namespace iBeacon_Indexer
 			return newBTDeviceId;
 		}
 
-		public int UpdateBtDevice(BtDevice btdevice, GPSLocation updatedGpsLocation){
+		public int AddUpdateBtDevice(BtDevice btdevice, GPSLocation gpsLocation){
+
+
+			int btDeviceId = 0;
 
 			iBeacon_Indexer.BtDevices btDevicesIndividual = new BtDevices();
+
 			btDevicesIndividual.Name = btdevice.Name;
 			btDevicesIndividual.Type = btdevice.Type;
 			btDevicesIndividual.MacAddress = btdevice.MacAddress;
@@ -198,23 +202,53 @@ namespace iBeacon_Indexer
 			btDevicesIndividual.Uuid = btdevice.UuidString;
 			btDevicesIndividual.Major = btdevice.MajorInt;
 			btDevicesIndividual.Minor = btdevice.MinorInt;
+			btDevicesIndividual.TimeFound = btdevice.TimeFound.ToString();
 
-			int updatedBTDeviceId = conn.Update (btDevicesIndividual);;
-			updatedGpsLocation.BtDevicesId = updatedBTDeviceId;
-			conn.Update (updatedGpsLocation);
+			BtDevices deviceAlreadyExists = GetBtDevice (btdevice.UuidString, btdevice.MajorInt, btdevice.MinorInt);
+			if (deviceAlreadyExists == null) {
+				btDeviceId = conn.Insert (btDevicesIndividual);
+				gpsLocation.BtDevicesId = btDeviceId;
+				conn.Insert (gpsLocation);
+			} else {
+				btDevicesIndividual.Id = deviceAlreadyExists.Id;
+				conn.Update (btDevicesIndividual);
 
-			return updatedBTDeviceId;
+				GPSLocation existingGPSLocation = GetGpsLocation(btDevicesIndividual.Id);
+				if (existingGPSLocation == null) {
+					existingGPSLocation.BtDevicesId = btDeviceId;
+					existingGPSLocation.Address = gpsLocation.Address;
+					existingGPSLocation.Altitude = gpsLocation.Altitude;
+					existingGPSLocation.LatitudeLongitude = gpsLocation.LatitudeLongitude;
+					conn.Insert (gpsLocation);
+				} else {
+					existingGPSLocation.BtDevicesId = btDeviceId;
+					existingGPSLocation.Address = gpsLocation.Address;
+					existingGPSLocation.Altitude = gpsLocation.Altitude;
+					existingGPSLocation.LatitudeLongitude = gpsLocation.LatitudeLongitude;
+					conn.Update (existingGPSLocation);
+				}
+
+			}
+
+			return btDeviceId;
 		}
+			
 
-		public BtDevices GetBtDevice(string uuid, int major, int minor, string macAddress){
-			var results =  conn.Table<BtDevices>().Where(x => x.Uuid == uuid && x.Major == major && x.Minor == minor && x.MacAddress == macAddress);
+		public GPSLocation GetGpsLocation(int btDeviceId){
+			var results =  conn.Table<GPSLocation>().Where(x => x.BtDevicesId == btDeviceId);
 
 			return results.FirstOrDefault();
 		}
 
-		public Locations GetLocationName(int major, int minor){
+		public BtDevices GetBtDevice(string uuid, int major, int minor){
+			var results =  conn.Table<BtDevices>().Where(x => x.Uuid == uuid && x.Major == major && x.Minor == minor);
 
-			var results = conn.Table<MMLocation>().Where (x => x.Major == major && x.Minor == minor);
+			return results.FirstOrDefault();
+		}
+
+		public Locations GetLocationName(string uuid, int major, int minor){
+
+			var results = conn.Table<MMLocation>().Where (x => x.UUID == uuid && x.Major == major && x.Minor == minor);
 			MMLocation resultMMLocation = results.FirstOrDefault ();
 
 			int locationId = (resultMMLocation != null ? resultMMLocation.Id : 1);

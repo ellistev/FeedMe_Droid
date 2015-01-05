@@ -156,30 +156,26 @@ namespace iBeacon_Indexer
 
 				//get gps location and 
 				string location = mBlueToothDiscover.CheckLocation ();
-				Locations locationName = database.GetLocationName (btDevice.MajorInt, btDevice.MinorInt);
+				Locations locationName = database.GetLocationName (btDevice.UuidString, btDevice.MajorInt, btDevice.MinorInt);
 
 
 				btDeviceList.Add (btDevice);
 
 				//only add if new, update if changed
 				Location currentLocation = mBlueToothDiscover.GetCurrentLocationObject ();
-				BtDevices deviceAlreadyExists = database.GetBtDevice (btDevice.UuidString, btDevice.MajorInt, btDevice.MinorInt, btDevice.MacAddress);
-				if (deviceAlreadyExists == null) {
-					GPSLocation newGpsLocation = new GPSLocation();
-					newGpsLocation.LatitudeLongitude = String.Format ("{0},{1}", currentLocation != null ? currentLocation.Latitude.ToString() : "", currentLocation != null ? currentLocation.Longitude.ToString() : "");
-					newGpsLocation.Address = location;
-					newGpsLocation.Altitude = currentLocation != null ? currentLocation.Altitude.ToString() : "";
-					newBtDeviceId = database.AddNewBtDevice (btDevice, newGpsLocation);
-				} else {
-					GPSLocation updatedGpsLocation = new GPSLocation();
-					updatedGpsLocation.LatitudeLongitude = String.Format ("{0},{1}", currentLocation != null ? currentLocation.Latitude.ToString() : "", currentLocation != null ? currentLocation.Longitude.ToString() : "");
-					updatedGpsLocation.Address = location;
-					updatedGpsLocation.Altitude = currentLocation != null ? currentLocation.Altitude.ToString() : "";
-					newBtDeviceId = database.UpdateBtDevice (btDevice, updatedGpsLocation);
-				}
+
+
+				GPSLocation newGpsLocation = new GPSLocation();
+				newGpsLocation.LatitudeLongitude = String.Format ("{0},{1}", currentLocation != null ? currentLocation.Latitude.ToString() : "", currentLocation != null ? currentLocation.Longitude.ToString() : "");
+				newGpsLocation.Address = location;
+				newGpsLocation.Altitude = currentLocation != null ? currentLocation.Altitude.ToString() : "";
+				newBtDeviceId = database.AddUpdateBtDevice (btDevice, newGpsLocation);
+
+
+			
 
 				//if (location != "Can't determine the current address." && location != "Unable to determine your location.") {
-				blueToothTextView.Text += "\n Device found: " + btDevice.MajorInt + ":" + btDevice.MinorInt + " You are at " + locationName.Name + "(" + String.Format ("{0},{1}", currentLocation != null ? currentLocation.Latitude.ToString() : "", currentLocation != null ? currentLocation.Longitude.ToString() : "") + location + ")";
+				blueToothTextView.Text += "\n Device found: " + btDevice.UuidString + ":" + btDevice.MajorInt + ":" + btDevice.MinorInt + " You are at " + locationName.Name + "(" + String.Format ("{0},{1}", currentLocation != null ? currentLocation.Latitude.ToString() : "", currentLocation != null ? currentLocation.Longitude.ToString() : "") + location + ")";
 
 
 
@@ -252,7 +248,7 @@ namespace iBeacon_Indexer
 				byte[] major = new byte[2];
 				byte[] minor = new byte[2];
 				byte tx = 0;
-				try{
+				//try{
 
 					major[0] = magic[22];
 					major[1] = magic[23];
@@ -268,13 +264,13 @@ namespace iBeacon_Indexer
 					tx = magic[26];
 					parsedObj.Tx = tx;
 
-				} catch (System.Exception ex) {
-					parsedObj.Major = major;
-					parsedObj.MajorInt  = 0;
-					parsedObj.Minor = minor;
-					parsedObj.MinorInt =  0;
-					parsedObj.Tx = 0;
-				}
+				//} catch (System.Exception ex) {
+				//	parsedObj.Major = major;
+				//	parsedObj.MajorInt  = 0;
+				//	parsedObj.Minor = minor;
+				//	parsedObj.MinorInt =  0;
+				//	parsedObj.Tx = 0;
+				//}
 
 				parsedObj.ScannedTime = new Date().Time;
 				return parsedObj;

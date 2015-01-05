@@ -24,6 +24,7 @@ namespace iBeacon_Indexer
 		public int MajorInt;
 		public string Minor;
 		public int MinorInt;
+		public long TimeFound;
         
         public BtDevice(){}
 
@@ -52,6 +53,7 @@ namespace iBeacon_Indexer
 			this.MajorInt = device.MajorInt;
 			this.Minor = device.Minor.ToString();
 			this.MinorInt = device.MinorInt;
+			this.TimeFound = device.ScannedTime;
 
 		}
 

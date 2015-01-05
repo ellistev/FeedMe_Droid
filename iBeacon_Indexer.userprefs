@@ -1,25 +1,20 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.CB5A1TURS3" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="FeedMe\MainActivity.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.079071f8" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="FeedMe\ActionFoundReceiver.cs">
     <Files>
-      <File FileName="FeedMe\MainActivity.cs" Line="37" Column="37" />
-      <File FileName="c:\Users\selliot\Google Drive\AndroidDev\FeedMe_Droid\FeedMe\ActionFoundReceiver.cs" Line="1" Column="1" />
-      <File FileName="c:\Users\selliot\Google Drive\AndroidDev\FeedMe_Droid\FeedMe\BlueToothDiscover.cs" Line="1" Column="1" />
       <File FileName="c:\Users\selliot\Google Drive\AndroidDev\FeedMe_Droid\FeedMe\Database\DatabaseFunctions.cs" Line="1" Column="1" />
-      <File FileName="c:\Users\selliot\Google Drive\AndroidDev\FeedMe_Droid\FeedMe\BtDeviceArrayAdapter.cs" Line="1" Column="1" />
-      <File FileName="FeedMe\BtDevice.cs" Line="1" Column="1" />
-      <File FileName="FeedMe\SettingsActivity.cs" Line="1" Column="1" />
-      <File FileName="FeedMe\Properties\AssemblyInfo.cs" Line="1" Column="1" />
+      <File FileName="FeedMe\ActionFoundReceiver.cs" Line="1" Column="1" />
+      <File FileName="FeedMe\BlueToothDiscover.cs" Line="69" Column="69" />
+      <File FileName="FeedMe\Database\DatabaseObjects.cs" Line="3" Column="3" />
+      <File FileName="c:\Users\selliot\Google Drive\AndroidDev\FeedMe_Droid\FeedMe\MainActivity.cs" Line="21" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="C:\Users\selliot\Google Drive\AndroidDev\FeedMe_Droid\FeedMe\MainActivity.cs" line="118" column="1" />
-      <Breakpoint file="C:\Users\selliot\Google Drive\AndroidDev\FeedMe_Droid\FeedMe\MainActivity.cs" line="174" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="FeedMe\ActionFoundReceiver.cs" line="86" offsetX="816" offsetY="1360" expression="device" liveUpdate="False" />
+    <Watch file="FeedMe\ActionFoundReceiver.cs" line="175" offsetX="669" offsetY="2784" expression="newGpsLocation" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
   <MonoDevelop.Ide.ItemProperties.iBeacon__Indexer__Droid MonoForAntroid.PreferredDevice="Nexus 4" MonoForAntroid.PreferredTheme="Theme" />
 </Properties>

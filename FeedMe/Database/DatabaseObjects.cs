@@ -46,6 +46,7 @@ namespace iBeacon_Indexer
 		public string Uuid{ get; set; }
 		public int Major{ get; set; }
 		public int Minor{ get; set; }
+		public string TimeFound {get;set;}
 
 
 	}
