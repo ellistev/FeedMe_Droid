@@ -66,7 +66,10 @@ namespace iBeacon_Indexer
 		{
 			
 			// aapt resource value: 0x7f050006
-			public const int BlueToothResultsListView = 2131034118;
+			public const int BlueToothResults = 2131034118;
+			
+			// aapt resource value: 0x7f050007
+			public const int BlueToothResultsListView = 2131034119;
 			
 			// aapt resource value: 0x7f05000b
 			public const int MainBlueToothButton = 2131034123;
@@ -101,14 +104,11 @@ namespace iBeacon_Indexer
 			// aapt resource value: 0x7f05000e
 			public const int monkeyStatusLabel = 2131034126;
 			
-			// aapt resource value: 0x7f050009
-			public const int sortBlueToothButton = 2131034121;
-			
-			// aapt resource value: 0x7f050007
-			public const int startBlueToothButton = 2131034119;
-			
 			// aapt resource value: 0x7f050008
-			public const int stopBlueToothButton = 2131034120;
+			public const int startBlueToothButton = 2131034120;
+			
+			// aapt resource value: 0x7f050009
+			public const int stopBlueToothButton = 2131034121;
 			
 			// aapt resource value: 0x7f050005
 			public const int textView1 = 2131034117;

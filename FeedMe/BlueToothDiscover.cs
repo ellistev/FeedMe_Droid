@@ -66,7 +66,7 @@ namespace iBeacon_Indexer
 				//blueToothTextView.SetHeight(1200);
 				blueToothListView.SetMinimumHeight(0);
 				CheckBTState();
-				receiver.SortBlueToothList(this);
+				receiver.OutputBlueToothList(this);
                 //btAdapter.StartDiscovery();
             };
 
@@ -74,21 +74,9 @@ namespace iBeacon_Indexer
             stopButton.Click += (object sender, EventArgs e) =>
 			{
 				btAdapter.StopLeScan(receiver);
-				receiver.SortBlueToothList(this);
+				receiver.OutputBlueToothList(this);
             };
-
-            Button sortButton = FindViewById<Button>(Resource.Id.sortBlueToothButton);
-            sortButton.Click += (object sender, EventArgs e) =>
-			{
-				receiver.PrintFullBlueToothList();
-				//blueToothTextView.SetHeight(0);
-				blueToothListView.SetMinimumHeight(1200);
-				//btAdapter.CancelDiscovery();
-				btAdapter.StopLeScan(receiver);
-                //receiver.SortBlueToothList(this);
-            };
-
-
+				
         }
 
 		public bool LocationWasUpdated(){

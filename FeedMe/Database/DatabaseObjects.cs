@@ -43,7 +43,7 @@ namespace iBeacon_Indexer
 		public string Type{ get; set; }
 		public string MacAddress{ get; set; }
 		public int Strength{ get; set; }
-		public string Uuid{ get; set; }
+		public string UUID{ get; set; }
 		public int Major{ get; set; }
 		public int Minor{ get; set; }
 		public string TimeFound {get;set;}

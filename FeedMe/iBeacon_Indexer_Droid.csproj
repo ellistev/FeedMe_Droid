@@ -67,6 +67,7 @@
     <Compile Include="MonitorNotifier.cs" />
     <Compile Include="Database\DatabaseObjects.cs" />
     <Compile Include="Utils\FileUtils.cs" />
+    <Compile Include="Utils\BLEParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

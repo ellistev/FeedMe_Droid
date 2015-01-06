@@ -176,7 +176,7 @@ namespace iBeacon_Indexer
 			btDevicesIndividual.Type = btdevice.Type;
 			btDevicesIndividual.MacAddress = btdevice.MacAddress;
 			btDevicesIndividual.Strength = btdevice.Strength;
-			btDevicesIndividual.Uuid = btdevice.UuidString;
+			btDevicesIndividual.UUID = btdevice.UuidString;
 			btDevicesIndividual.Major = btdevice.MajorInt;
 			btDevicesIndividual.Minor = btdevice.MinorInt;
 
@@ -199,7 +199,7 @@ namespace iBeacon_Indexer
 			btDevicesIndividual.Type = btdevice.Type;
 			btDevicesIndividual.MacAddress = btdevice.MacAddress;
 			btDevicesIndividual.Strength = btdevice.Strength;
-			btDevicesIndividual.Uuid = btdevice.UuidString;
+			btDevicesIndividual.UUID = btdevice.UuidString;
 			btDevicesIndividual.Major = btdevice.MajorInt;
 			btDevicesIndividual.Minor = btdevice.MinorInt;
 			btDevicesIndividual.TimeFound = btdevice.TimeFound.ToString();
@@ -242,7 +242,7 @@ namespace iBeacon_Indexer
 		}
 
 		public BtDevices GetBtDevice(string uuid, int major, int minor){
-			var results =  conn.Table<BtDevices>().Where(x => x.Uuid == uuid && x.Major == major && x.Minor == minor);
+			var results =  conn.Table<BtDevices>().Where(x => x.UUID == uuid && x.Major == major && x.Minor == minor);
 
 			return results.FirstOrDefault();
 		}

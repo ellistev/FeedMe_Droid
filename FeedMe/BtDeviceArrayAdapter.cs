@@ -69,9 +69,9 @@ namespace iBeacon_Indexer
 			var deviceMacAddress = view.FindViewById<TextView>(Resource.Id.btListItemMacAddress);
 			var deviceRawData = view.FindViewById<TextView>(Resource.Id.btListItemRaw);
 			deviceName.Text = btDeviceList[position].Name;
-			deviceType.Text = btDeviceList[position].Type;
-			deviceStrength.Text = btDeviceList[position].Strength.ToString();
-			deviceMacAddress.Text = btDeviceList[position].MacAddress;
+			deviceType.Text = "";
+			deviceStrength.Text = "";
+			deviceMacAddress.Text = "";
 			BtDevices deviceInQuestion = btDeviceList [position];
 
 			var dump = ObjectDumper.Dump(deviceInQuestion);

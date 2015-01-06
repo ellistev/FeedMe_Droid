@@ -24,7 +24,7 @@ namespace iBeacon_Indexer
 		public int MajorInt;
 		public string Minor;
 		public int MinorInt;
-		public long TimeFound;
+		public string TimeFound;
         
         public BtDevice(){}
 
@@ -53,8 +53,14 @@ namespace iBeacon_Indexer
 			this.MajorInt = device.MajorInt;
 			this.Minor = device.Minor.ToString();
 			this.MinorInt = device.MinorInt;
-			this.TimeFound = device.ScannedTime;
+			this.TimeFound = (FromUnixTime(device.ScannedTime)).ToString();
 
+		}
+
+		public DateTime FromUnixTime(long unixTime)
+		{
+			var epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+			return epoch.AddMilliseconds(unixTime);
 		}
 
 
