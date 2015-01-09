@@ -13,6 +13,7 @@ using String = System.String;
 using Resource = Android.Resource;
 using SQLite;
 using Android.Locations;
+using Math = Java.Lang.Math;
 
 namespace iBeacon_Indexer
 {
@@ -178,6 +179,21 @@ namespace iBeacon_Indexer
 			}
 
 		}
+
+		protected static double calculateDistance(int txPower, double rssi) {
+			if (rssi == 0) {
+				return -1.0; // if we cannot determine distance, return -1.
+			}
+
+			double ratio = rssi*1.0/txPower;
+			if (ratio < 1.0) {
+				return Math.Pow(ratio,10);
+			}
+			else {
+				double accuracy =  (0.89976)*Math.Pow(ratio,7.7095) + 0.111;    
+				return accuracy;
+			}
+		} 
 
 
 			
